@@ -27,11 +27,11 @@ import { CtaSection } from "@/components/sections/cta-section"
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
 }
 
 const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } }
+  visible: { transition: { staggerChildren: 0.15 } }
 }
 
 const programs = [
@@ -176,8 +176,8 @@ function ProgramCard({ program, index }: { program: typeof programs[0], index: n
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: index * 0.1, duration: 0.5 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
         onClick={() => setIsModalOpen(true)}
         className="group relative p-8 rounded-[2.5rem] bg-card/40 backdrop-blur-sm border border-border/60 hover:border-secondary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col h-full cursor-pointer"
       >
@@ -430,8 +430,8 @@ export default function InternshipPage() {
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
                       className="flex items-start gap-4"
                     >
                       <div className="mt-1 h-6 w-6 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
@@ -518,8 +518,8 @@ export default function InternshipPage() {
                 key={tier.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
                 className={`relative p-8 rounded-[2rem] border transition-all duration-300 flex flex-col ${
                   tier.popular 
                     ? "bg-card/60 backdrop-blur-md border-secondary shadow-[0_0_40px_-10px_rgba(6,182,212,0.3)] lg:scale-105 z-10" 
@@ -599,8 +599,8 @@ export default function InternshipPage() {
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
                   className="flex flex-col items-center text-center group"
                 >
                   <div className="w-20 h-20 rounded-full bg-card border-2 border-border group-hover:border-secondary flex items-center justify-center mb-6 relative z-10 shadow-lg group-hover:scale-110 transition-all duration-300 group-hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.5)]">

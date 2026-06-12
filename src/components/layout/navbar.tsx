@@ -21,6 +21,17 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  React.useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+    return () => {
+      document.body.style.overflow = "unset"
+    }
+  }, [isMobileMenuOpen])
+
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
@@ -32,7 +43,9 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 flex flex-col ${
-        isScrolled
+        isMobileMenuOpen
+          ? "h-[100dvh] bg-background"
+          : isScrolled
           ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
           : "bg-transparent"
       }`}
@@ -40,7 +53,7 @@ export function Navbar() {
       {/* Announcement Marquee */}
       <div className="bg-secondary text-secondary-foreground text-xs font-medium py-2 overflow-hidden flex items-center w-full border-b border-secondary-foreground/10">
         <motion.div 
-          className="flex whitespace-nowrap"
+          className="flex whitespace-nowrap will-change-transform"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ ease: "linear", duration: 35, repeat: Infinity }}
         >
@@ -87,7 +100,8 @@ export function Navbar() {
             </div>
           </nav>
 
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-foreground/80 hover:text-foreground"
@@ -100,14 +114,14 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background border-b border-border">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col gap-2">
+        <div className="md:hidden bg-background flex-1 overflow-y-auto border-t border-border">
+          <div className="px-4 py-6 flex flex-col gap-4 h-full">
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href} 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
+                className={`block px-4 py-3 text-lg font-medium rounded-xl transition-colors ${
                   pathname === link.href 
                     ? "bg-secondary/10 text-secondary" 
                     : "hover:bg-accent text-foreground/80"
@@ -116,13 +130,9 @@ export function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <div className="pt-4 flex flex-col gap-2 px-3">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium">Theme</span>
-                <ThemeToggle />
-              </div>
+            <div className="pt-2 flex flex-col gap-4">
               <Link href="/contact" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button className="w-full justify-center">Let's Talk</Button>
+                <Button size="lg" className="w-full justify-center text-lg">Let's Talk</Button>
               </Link>
             </div>
           </div>
