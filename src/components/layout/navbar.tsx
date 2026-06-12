@@ -1,0 +1,133 @@
+"use client"
+
+import * as React from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Menu, X, Code2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { motion } from "framer-motion"
+
+export function Navbar() {
+  const [isScrolled, setIsScrolled] = React.useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+  const pathname = usePathname()
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Our Work", href: "/portfolio" },
+    { name: "Internship", href: "/internship" },
+  ]
+
+  return (
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 flex flex-col ${
+        isScrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
+          : "bg-transparent"
+      }`}
+    >
+      {/* Announcement Marquee */}
+      <div className="bg-secondary text-secondary-foreground text-xs font-medium py-2 overflow-hidden flex items-center w-full border-b border-secondary-foreground/10">
+        <motion.div 
+          className="flex whitespace-nowrap"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ ease: "linear", duration: 35, repeat: Infinity }}
+        >
+          {[1, 2].map((set) => (
+            <div key={set} className="flex gap-12 px-6 items-center">
+              <span className="flex items-center gap-2">🚀 <strong className="font-bold uppercase tracking-wider">Summer Internship 2026</strong> Applications are now open!</span>
+              <span className="flex items-center gap-2">⚡ Build real-world enterprise applications with industry experts.</span>
+              <span className="flex items-center gap-2">🔥 Spots are limited. Interviews starting next week.</span>
+              <span className="flex items-center gap-2">💡 Master Next.js, React, Node.js, and Cloud Architecture.</span>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="bg-secondary/10 p-2 rounded-xl group-hover:bg-secondary/20 transition-colors">
+                <Code2 className="h-6 w-6 text-secondary" />
+              </div>
+              <span className="font-bold text-xl tracking-tight">CodeLaunch</span>
+            </Link>
+          </div>
+          
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                href={link.href} 
+                className={`text-sm font-medium transition-colors ${
+                  pathname === link.href 
+                    ? "text-secondary" 
+                    : "text-foreground/80 hover:text-secondary"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="flex items-center gap-4 ml-4 border-l pl-4 border-border">
+              <ThemeToggle />
+              <Link href="/contact">
+                <Button>Let's Talk</Button>
+              </Link>
+            </div>
+          </nav>
+
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-foreground/80 hover:text-foreground"
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-background border-b border-border">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                href={link.href} 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
+                  pathname === link.href 
+                    ? "bg-secondary/10 text-secondary" 
+                    : "hover:bg-accent text-foreground/80"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="pt-4 flex flex-col gap-2 px-3">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm font-medium">Theme</span>
+                <ThemeToggle />
+              </div>
+              <Link href="/contact" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button className="w-full justify-center">Let's Talk</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  )
+}
