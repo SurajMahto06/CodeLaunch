@@ -120,8 +120,9 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group p-8 rounded-3xl bg-background border border-border/60 hover:border-secondary/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 relative overflow-hidden"
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                whileHover={{ y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
+                className="group p-8 rounded-3xl bg-background border border-border/60 hover:border-secondary/50 hover:shadow-2xl transition-[border-color,box-shadow] duration-500 relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="h-14 w-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary mb-6 group-hover:scale-110 group-hover:bg-secondary group-hover:text-secondary-foreground transition-all duration-300">

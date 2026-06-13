@@ -109,8 +109,8 @@ export default function PortfolioPage() {
                 key={i}
                 onClick={() => setActiveFilter(filter)}
                 className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${activeFilter === filter
-                    ? 'bg-secondary text-secondary-foreground border-secondary shadow-[0_0_20px_-5px_rgba(6,182,212,0.4)]'
-                    : 'bg-background text-muted-foreground border-border/60 hover:border-secondary/50 hover:text-foreground'
+                  ? 'bg-secondary text-secondary-foreground border-secondary shadow-[0_0_20px_-5px_rgba(6,182,212,0.4)]'
+                  : 'bg-background text-muted-foreground border-border/60 hover:border-secondary/50 hover:text-foreground'
                   }`}
               >
                 {filter}
@@ -129,7 +129,8 @@ export default function PortfolioPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4 }}
-                  className="group relative rounded-[2rem] bg-card/40 backdrop-blur-sm border border-border/60 hover:border-secondary/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden flex flex-col cursor-pointer"
+                  whileHover={{ y: -8, transition: { duration: 0.2, ease: "easeOut" } }}
+                  className="group relative rounded-[2rem] bg-card/40 backdrop-blur-sm border border-border/60 hover:border-secondary/50 hover:shadow-2xl transition-[border-color,box-shadow] duration-500 overflow-hidden flex flex-col cursor-pointer"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 

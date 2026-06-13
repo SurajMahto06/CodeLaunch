@@ -42,17 +42,16 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 flex flex-col ${
-        isMobileMenuOpen
+      className={`fixed top-0 w-full z-50 transition-all duration-300 flex flex-col ${isMobileMenuOpen
           ? "h-[100dvh] bg-background"
           : isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent"
-      }`}
+            ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
+            : "bg-transparent"
+        }`}
     >
       {/* Announcement Marquee */}
       <div className="bg-secondary text-secondary-foreground text-xs font-medium py-2 overflow-hidden flex items-center w-full border-b border-secondary-foreground/10">
-        <motion.div 
+        <motion.div
           className="flex whitespace-nowrap will-change-transform"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ ease: "linear", duration: 35, repeat: Infinity }}
@@ -77,17 +76,16 @@ export function Navbar() {
               <span className="font-bold text-xl tracking-tight">CodeLaunch</span>
             </Link>
           </div>
-          
+
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href} 
-                className={`text-sm font-medium transition-colors ${
-                  pathname === link.href 
-                    ? "text-secondary" 
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`text-sm font-medium transition-colors ${pathname === link.href
+                    ? "text-secondary"
                     : "text-foreground/80 hover:text-secondary"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>
@@ -117,15 +115,14 @@ export function Navbar() {
         <div className="md:hidden bg-background flex-1 overflow-y-auto border-t border-border">
           <div className="px-4 py-6 flex flex-col gap-4 h-full">
             {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href} 
+              <Link
+                key={link.name}
+                href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-4 py-3 text-lg font-medium rounded-xl transition-colors ${
-                  pathname === link.href 
-                    ? "bg-secondary/10 text-secondary" 
+                className={`block px-4 py-3 text-lg font-medium rounded-xl transition-colors ${pathname === link.href
+                    ? "bg-secondary/10 text-secondary"
                     : "hover:bg-accent text-foreground/80"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>

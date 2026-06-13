@@ -92,7 +92,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Top Section Wrapper (Allows glow to bleed across Hero, Header, and Stats) */}
       <div className="relative bg-background">
         {/* Unified Background Glow */}
@@ -222,10 +222,11 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
                 key={i}
-                className="group relative p-6 rounded-2xl bg-card/40 backdrop-blur-sm border border-border/60 hover:border-secondary/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col"
+                className="group relative p-6 rounded-2xl bg-card/40 backdrop-blur-sm border border-border/60 hover:border-secondary/50 hover:shadow-xl transition-[border-color,box-shadow] duration-300 overflow-hidden flex flex-col"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-secondary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -336,8 +337,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Full-width Marquee Container */}
-        <div className="relative mt-8 py-8 flex flex-col gap-6 max-w-[100vw]">
+        <div className="relative mt-8 py-8 flex flex-col gap-6 max-w-full">
           {/* Gradient masks for smooth fade on exact edges of the screen */}
           <div className="absolute left-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />

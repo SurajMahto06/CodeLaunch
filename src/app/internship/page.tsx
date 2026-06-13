@@ -178,8 +178,9 @@ function ProgramCard({ program, index }: { program: typeof programs[0], index: n
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
+        whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
         onClick={() => setIsModalOpen(true)}
-        className="group relative p-8 rounded-[2.5rem] bg-card/40 backdrop-blur-sm border border-border/60 hover:border-secondary/50 hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col h-full cursor-pointer"
+        className="group relative p-8 rounded-[2.5rem] bg-card/40 backdrop-blur-sm border border-border/60 hover:border-secondary/50 hover:shadow-2xl transition-[border-color,box-shadow] duration-500 overflow-hidden flex flex-col h-full cursor-pointer"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -520,7 +521,7 @@ export default function InternshipPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
-                className={`relative p-8 rounded-[2rem] border transition-all duration-300 flex flex-col ${
+                className={`relative p-8 rounded-[2rem] border transition-[border-color,box-shadow] duration-300 flex flex-col ${
                   tier.popular 
                     ? "bg-card/60 backdrop-blur-md border-secondary shadow-[0_0_40px_-10px_rgba(6,182,212,0.3)] lg:scale-105 z-10" 
                     : "bg-card/30 backdrop-blur-sm border-border/60 hover:border-secondary/50"
