@@ -101,6 +101,9 @@
   * {
     @apply border-[color:var(--color-border)];
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-[color:var(--color-background)] text-[color:var(--color-foreground)];
   }

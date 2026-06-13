@@ -1,5 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import { Code2, Mail } from "lucide-react"
+import { scrollToTop } from "@/lib/utils"
 
 function Twitter(props: any) {
   return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" /></svg>
@@ -19,7 +22,7 @@ export function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-6 group">
+            <Link href="/" onClick={scrollToTop} className="flex items-center gap-2 mb-6 group">
               <div className="bg-secondary/10 p-2 rounded-xl group-hover:bg-secondary/20 transition-colors">
                 <Code2 className="h-6 w-6 text-secondary" />
               </div>
@@ -44,22 +47,24 @@ export function Footer() {
           <div>
             <h4 className="font-semibold mb-6">Services</h4>
             <ul className="space-y-4">
-              <li><Link href="/services" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Web Development</Link></li>
-              <li><Link href="/services" className="text-sm text-muted-foreground hover:text-secondary transition-colors">ERP Systems</Link></li>
-              <li><Link href="/services" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Mobile Apps</Link></li>
-              <li><Link href="/services" className="text-sm text-muted-foreground hover:text-secondary transition-colors">UI/UX Design</Link></li>
+              <li><Link href="/services" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">AI Chatbots</Link></li>
+              <li><Link href="/services" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Admin Dashboards</Link></li>
+              <li><Link href="/services" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Industry CRMs</Link></li>
+              <li><Link href="/services" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">App Development</Link></li>
+              <li><Link href="/services" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Web Design & Deployment</Link></li>
+              <li><Link href="/services" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Custom Software</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold mb-6">Company</h4>
             <ul className="space-y-4">
-              <li><Link href="/about" className="text-sm text-muted-foreground hover:text-secondary transition-colors">About Us</Link></li>
-              <li><Link href="/portfolio" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Our Work</Link></li>
-              <li><Link href="/internship" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Careers & Internships</Link></li>
-              <li><Link href="/verify" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Verify Certificate</Link></li>
-              <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Contact Us</Link></li>
-              <li><Link href="/faq" className="text-sm text-muted-foreground hover:text-secondary transition-colors">FAQ</Link></li>
+              <li><Link href="/about" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">About Us</Link></li>
+              <li><Link href="/portfolio" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Our Work</Link></li>
+              <li><Link href="/internship" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Careers & Internships</Link></li>
+              <li><Link href="/verify" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Verify Certificate</Link></li>
+              <li><Link href="/contact" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Contact Us</Link></li>
+              <li><Link href="/faq" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">FAQ</Link></li>
             </ul>
           </div>
 
@@ -83,8 +88,8 @@ export function Footer() {
             © {new Date().getFullYear()} CodeLaunch Technologies. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Terms of Service</Link>
+            <Link href="/privacy" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Privacy Policy</Link>
+            <Link href="/terms" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

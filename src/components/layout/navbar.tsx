@@ -7,6 +7,7 @@ import { Menu, X, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { motion } from "framer-motion"
+import { scrollToTop } from "@/lib/utils"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -43,10 +44,10 @@ export function Navbar() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 flex flex-col ${isMobileMenuOpen
-          ? "h-[100dvh] bg-background"
-          : isScrolled
-            ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
-            : "bg-transparent"
+        ? "h-[100dvh] bg-background"
+        : isScrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
+          : "bg-transparent"
         }`}
     >
       {/* Announcement Marquee */}
@@ -69,7 +70,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href="/" onClick={scrollToTop} className="flex items-center gap-2 group">
               <div className="bg-secondary/10 p-2 rounded-xl group-hover:bg-secondary/20 transition-colors">
                 <Code2 className="h-6 w-6 text-secondary" />
               </div>
@@ -82,9 +83,10 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={scrollToTop}
                 className={`text-sm font-medium transition-colors ${pathname === link.href
-                    ? "text-secondary"
-                    : "text-foreground/80 hover:text-secondary"
+                  ? "text-secondary"
+                  : "text-foreground/80 hover:text-secondary"
                   }`}
               >
                 {link.name}
@@ -118,17 +120,23 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false)
+                  scrollToTop()
+                }}
                 className={`block px-4 py-3 text-lg font-medium rounded-xl transition-colors ${pathname === link.href
-                    ? "bg-secondary/10 text-secondary"
-                    : "hover:bg-accent text-foreground/80"
+                  ? "bg-secondary/10 text-secondary"
+                  : "hover:bg-accent text-foreground/80"
                   }`}
               >
                 {link.name}
               </Link>
             ))}
             <div className="pt-2 flex flex-col gap-4">
-              <Link href="/contact" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/contact" className="w-full" onClick={() => {
+                setIsMobileMenuOpen(false)
+                scrollToTop()
+              }}>
                 <Button size="lg" className="w-full justify-center text-lg">Let's Talk</Button>
               </Link>
             </div>
