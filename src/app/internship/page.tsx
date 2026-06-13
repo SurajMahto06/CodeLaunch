@@ -315,10 +315,9 @@ export default function InternshipPage() {
       price: "₹599",
       description: "Perfect for self-paced learners who just need materials.",
       features: [
-        "Comprehensive PDF Materials",
-        "Weekly Doubt Clearing Sessions",
-        "Community Access",
-        "Internship Certificate"
+        "PDF Materials: Comprehensive guides and project briefs",
+        "Doubt Sessions: Weekly group Q&A sessions",
+        "Certificate: Verified internship certificate"
       ],
       buttonText: "Enroll Standard",
       popular: false,
@@ -329,11 +328,11 @@ export default function InternshipPage() {
       price: "₹1,199",
       description: "The complete training experience with video lectures.",
       features: [
-        "Everything in Standard",
-        "Video Lecture Portal Access",
-        "Advanced Capstone Projects",
-        "Priority Support",
-        "Letter of Recommendation"
+        "Video Portal: Access to our premium video lectures",
+        "PDF Materials: Comprehensive guides and project briefs",
+        "Doubt Sessions: Weekly group Q&A sessions",
+        "Capstone Projects: Build advanced real-world projects",
+        "Certificate: Verified internship certificate"
       ],
       buttonText: "Enroll Premium",
       popular: true,
@@ -344,10 +343,11 @@ export default function InternshipPage() {
       price: "₹5,999",
       description: "Guaranteed 1-on-1 mentorship and full premium access.",
       features: [
-        "1-on-1 Mentorship",
-        "Video Portal",
-        "PDF Materials",
-        "Certificate"
+        "1-on-1 Mentorship: Dedicated senior engineer mentor",
+        "Video Portal: Full access to premium video content",
+        "PDF Materials: Comprehensive guides and project briefs",
+        "Capstone Projects: Build advanced real-world projects",
+        "Certificate: Verified internship certificate"
       ],
       buttonText: "Enroll Elite",
       popular: false,
@@ -507,7 +507,7 @@ export default function InternshipPage() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[150px] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Track</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Plan</span></h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
               Fast-track your career with our guaranteed training and mentorship options.
             </p>
