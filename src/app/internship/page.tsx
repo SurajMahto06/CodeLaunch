@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, Variants } from "framer-motion"
 import {
   Code2,
   Database,
@@ -25,12 +25,12 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { CtaSection } from "@/components/sections/cta-section"
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
 }
 
-const stagger = {
+const stagger: Variants = {
   visible: { transition: { staggerChildren: 0.15 } }
 }
 
