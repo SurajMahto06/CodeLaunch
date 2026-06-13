@@ -26,7 +26,13 @@ import {
   Cloud,
   Sparkles,
   Layers,
-  Smartphone
+  Smartphone,
+  Bot,
+  LayoutDashboard,
+  Building2,
+  Globe,
+  CircleDollarSign,
+  Unlock
 } from "lucide-react"
 
 import {
@@ -100,7 +106,7 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-primary/20 dark:bg-primary/10 rounded-full blur-[100px] md:blur-[120px] pointer-events-none" />
 
         {/* Hero Section */}
-        <section className="relative pt-24 pb-24 ">
+        <section className="relative pt-16 pb-16 ">
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px] pointer-events-none" />
 
 
@@ -111,17 +117,27 @@ export default function Home() {
               variants={staggerContainer}
               className="text-center max-w-4xl mx-auto"
             >
-              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-secondary mb-8">
-                <span className="flex h-2 w-2 rounded-full bg-secondary"></span>
-                <span className="text-sm font-medium">New: Enterprise ERP Solutions</span>
-              </motion.div>
+              <Link href="/contact">
+                <motion.div
+                  variants={fadeIn}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 border border-secondary/20 text-secondary mb-8 cursor-pointer hover:bg-secondary/20 transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-secondary/10 group"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+                  </span>
+                  <span className="text-sm font-medium">Available for new projects</span>
+                  <ArrowRight className="h-3.5 w-3.5 opacity-70 group-hover:translate-x-1 transition-transform" />
+                </motion.div>
+              </Link>
 
               <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
-                Building Modern <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Digital Products</span> That Scale
+                Build Smarter with <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">AI-Powered</span> Software
               </motion.h1>
 
               <motion.p variants={fadeIn} className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-                We help startups and businesses build websites, ERP systems, mobile apps, and custom software solutions with modern engineering excellence.
+                AI chatbots, custom dashboards, industry CRMs, mobile apps, and modern websites — built for your business, delivered in weeks.
               </motion.p>
 
               <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
@@ -131,9 +147,9 @@ export default function Home() {
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
-                <Link href="/portfolio" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="h-12 px-8 text-base w-full">
-                    View Our Work
+                <Link href="/internship" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="h-12 px-8 text-base w-full hover:border-secondary/50 hover:text-secondary hover:bg-secondary/10 transition-colors">
+                    Explore Internships
                   </Button>
                 </Link>
               </motion.div>
@@ -196,28 +212,32 @@ export default function Home() {
       </div>
 
       {/* Services Section */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 relative">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary mb-4 text-sm font-semibold tracking-wide uppercase">
               Our Expertise
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
-              Enterprise-Grade <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Digital Services</span>
+              What We <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Build</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We architect and build scalable software solutions that drive growth for startups and Fortune 500 companies alike.
+              End-to-end solutions for modern businesses.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Code2, title: "Website Development", desc: "High-performance marketing sites and complex web applications built with Next.js." },
-              { icon: Database, title: "ERP Development", desc: "Custom enterprise resource planning systems tailored to your business logic." },
-              { icon: MonitorSmartphone, title: "Mobile App Development", desc: "Native-feeling cross-platform mobile apps for iOS and Android." },
-              { icon: Palette, title: "UI/UX Design", desc: "Premium, conversion-focused interfaces that delight users." },
-              { icon: Lightbulb, title: "Software Consulting", desc: "Strategic technical guidance for architecture and scaling." },
+              { icon: Bot, title: "AI Chatbots", desc: "24/7 lead qualification & customer support. Works on WhatsApp, web, and social media." },
+              { icon: LayoutDashboard, title: "Admin Dashboards", desc: "Real-time analytics, KPIs, and reporting. See your business at a glance." },
+              { icon: Building2, title: "Industry CRMs", desc: "Tailored for finance, healthcare, real estate & more. Manage leads, loans, clients." },
+              { icon: Smartphone, title: "App Development", desc: "iOS & Android apps — cross-platform, fast, built for your business. From $499." },
+              { icon: Globe, title: "Web Design & Deployment", desc: "Responsive websites & e-commerce. SEO-optimized, mobile-first. From $50." },
+              { icon: Code2, title: "Custom Software", desc: "Automate workflows, integrate APIs, build micro SaaS. Your idea, our code." },
+              { icon: CircleDollarSign, title: "Transparent Pricing", desc: "No hidden fees. Starting at $50. You own your API keys." },
+              { icon: Unlock, title: "Full Source Code", desc: "You own everything. No vendor lock-in. We hand over code, docs, and deploy guides." },
               { icon: GraduationCap, title: "Internship Programs", desc: "Industry-aligned training programs for aspiring developers." },
+
             ].map((service, i) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -244,7 +264,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-32 bg-muted/30 border-y border-border relative overflow-hidden">
+      <section className="py-20 bg-muted/30 border-y border-border relative overflow-hidden">
         {/* Background Decorative Gradients */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
@@ -252,7 +272,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">CodeLaunch?</span></h2>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">CodeLaunch?</span></h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 We don't just write code; we build scalable digital products that solve real business problems. Our engineering culture is built on quality, velocity, and extreme performance.
               </p>
@@ -292,7 +312,7 @@ export default function Home() {
                 </div>
 
                 {/* Fake UI Body */}
-                <div className="absolute inset-0 flex flex-col p-8 pt-24 gap-6">
+                <div className="absolute inset-0 flex flex-col p-8 pt-16 gap-6">
                   <div className="flex gap-6 items-center">
                     <div className="h-16 w-16 rounded-2xl bg-secondary/20 animate-pulse border border-secondary/30" />
                     <div className="space-y-3 flex-1">
@@ -322,14 +342,14 @@ export default function Home() {
       <OurProcess />
 
       {/* Tech Stack Section */}
-      <section className="py-24 bg-background border-t border-border overflow-hidden">
+      <section className="py-16 bg-background border-t border-border overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 relative">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary mb-4 text-sm font-semibold tracking-wide uppercase">
               Tech Stack
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
-              Powered by <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Modern Engineering</span>
+              Built with <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Modern Tech</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               We leverage enterprise-grade technologies to build fast, secure, and infinitely scalable digital products that stand the test of time.
@@ -400,91 +420,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects Section */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Projects</span></h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              A glimpse into the digital products we've built for our enterprise clients and startups.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "School ERP System", tech: "Next.js + PostgreSQL", image: "ERP Dashboard Preview", desc: "A comprehensive management system handling 10,000+ students with real-time analytics." },
-              { title: "E-Commerce Platform", tech: "React + Node.js", image: "Storefront UI", desc: "High-conversion storefront with sub-second page loads and seamless payment integrations." },
-              { title: "Hospital Management", tech: "Vue + Express", image: "Healthcare Analytics", desc: "HIPAA-compliant patient portal and staff management dashboard." },
-            ].map((project, i) => (
-              <div key={i} className="group rounded-2xl overflow-hidden border border-border/50 bg-card/40 backdrop-blur-sm hover:border-secondary/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col">
-                <div className="aspect-video bg-muted/30 relative flex items-center justify-center text-muted-foreground/40 text-sm font-mono overflow-hidden">
-                  <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-300 z-10" />
-                  <div className="group-hover:scale-105 transition-transform duration-700">[{project.image}]</div>
-                  {/* Floating badge */}
-                  <div className="absolute bottom-3 right-3 px-3 py-1 bg-background/80 backdrop-blur-md border border-white/10 rounded-full text-[10px] font-bold text-secondary uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-500 z-20">
-                    Case Study
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-xl font-bold mb-1">{project.title}</h3>
-                    <p className="text-xs font-semibold text-secondary mb-3">{project.tech}</p>
-                    <p className="text-sm text-muted-foreground">{project.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Internship Program Preview */}
-      <section className="py-24 bg-muted/50 border-y border-border">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary mb-4 text-sm font-medium">
-              We're Hiring Interns!
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Launch Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Tech Career</span></h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Join our industry-leading internship programs. Work on live projects, get mentored by senior engineers, and kickstart your career.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16 relative">
-            {/* Glowing orb behind */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[80px] pointer-events-none" />
-
-            {[
-              { track: "Frontend Engineering", icon: Code2 },
-              { track: "Backend Engineering", icon: Terminal },
-              { track: "Full Stack Mastery", icon: Layers },
-              { track: "UI/UX Architecture", icon: Palette },
-              { track: "Mobile App Dev", icon: Smartphone },
-              { track: "AI & Web Dev", icon: Sparkles }
-            ].map((item, i) => (
-              <div key={i} className="group relative p-6 bg-card/40 backdrop-blur-sm border border-border/50 rounded-2xl text-center hover:border-secondary/50 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.3)] hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden z-10">
-                <div className="absolute inset-0 bg-gradient-to-b from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <item.icon className="h-8 w-8 mx-auto mb-4 text-muted-foreground group-hover:text-secondary transition-colors duration-300" />
-                <span className="font-semibold text-sm relative z-10">{item.track}</span>
-              </div>
-            ))}
-          </div>
-          <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-muted-foreground">
-            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Live Projects</div>
-            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> 1-on-1 Mentorship</div>
-            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Certificate of Completion</div>
-            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Interview Preparation</div>
-            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Certificate Verification</div>
-          </div>
-          <div className="text-center mt-12">
-            <Link href="/internship">
-              <Button variant="outline" className="h-12 px-8 group">View All Internship Programs <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" /></Button>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Success Stories / Testimonials */}
-      <section className="py-24 bg-card/50 border-t border-border relative">
+      <section className="py-16 bg-card/50 border-t border-border relative">
         <style>{`
           .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -497,7 +436,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Client <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Success Stories</span></h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Client <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Success Stories</span></h2>
               <p className="text-muted-foreground text-lg">
                 Don't just take our word for it. Here's what our enterprise clients and partners have to say.
               </p>
@@ -553,6 +492,52 @@ export default function Home() {
             ))}
             {/* Spacer to fix right-side padding collapse in flex scroll containers */}
             <div className="w-1 shrink-0" />
+          </div>
+        </div>
+      </section>
+
+      {/* Internship Program Preview */}
+      <section className="py-16 bg-muted/50 border-y border-border">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary mb-4 text-sm font-medium">
+              We're Hiring Interns!
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Launch Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Tech Career</span></h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Join our industry-leading internship programs. Work on live projects, get mentored by senior engineers, and kickstart your career.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16 relative">
+            {/* Glowing orb behind */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[80px] pointer-events-none" />
+
+            {[
+              { track: "Frontend Engineering", icon: Code2 },
+              { track: "Backend Engineering", icon: Terminal },
+              { track: "Full Stack Mastery", icon: Layers },
+              { track: "UI/UX Architecture", icon: Palette },
+              { track: "Mobile App Dev", icon: Smartphone },
+              { track: "AI & Web Dev", icon: Sparkles }
+            ].map((item, i) => (
+              <div key={i} className="group relative p-6 bg-card/40 backdrop-blur-sm border border-border/50 rounded-2xl text-center hover:border-secondary/50 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.3)] hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden z-10">
+                <div className="absolute inset-0 bg-gradient-to-b from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <item.icon className="h-8 w-8 mx-auto mb-4 text-muted-foreground group-hover:text-secondary transition-colors duration-300" />
+                <span className="font-semibold text-sm relative z-10">{item.track}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-muted-foreground">
+            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Live Projects</div>
+            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> 1-on-1 Mentorship</div>
+            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Certificate of Completion</div>
+            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Interview Preparation</div>
+            <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-secondary" /> Certificate Verification</div>
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/internship">
+              <Button variant="outline" className="h-12 px-8 group">View All Internship Programs <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" /></Button>
+            </Link>
           </div>
         </div>
       </section>

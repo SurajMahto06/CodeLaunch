@@ -252,7 +252,7 @@ function ApplicationForm() {
         </Link>
 
         <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 tracking-tight">
-          Launch Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Tech Career</span>
+          Launch Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Tech Career</span>
         </h1>
 
         <p className="text-lg text-muted-foreground mb-10 leading-relaxed max-w-2xl">
@@ -618,7 +618,7 @@ function ApplicationForm() {
 
 export default function ApplyPage() {
   return (
-    <div className="min-h-screen bg-background pt-12 pb-24 px-4 relative overflow-hidden selection:bg-secondary/30">
+    <div className="min-h-screen bg-background pt-12 pb-16 px-4 relative overflow-hidden selection:bg-secondary/30">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-secondary/5 blur-[120px]" />
         <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] rounded-full bg-blue-500/5 blur-[100px]" />

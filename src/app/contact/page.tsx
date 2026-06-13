@@ -36,7 +36,7 @@ export default function ContactPage() {
         <div className="absolute bottom-[10%] left-[-5%] w-[30%] h-[30%] rounded-full bg-primary/5 blur-[100px]" />
       </div>
 
-      <div className="pt-24 pb-24 px-4 container mx-auto">
+      <div className="pt-16 pb-16 px-4 container mx-auto">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -47,7 +47,7 @@ export default function ContactPage() {
             <MessageSquare className="w-4 h-4" /> Let's Connect
           </motion.div>
           <motion.h1 variants={fadeIn} className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
-            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Touch</span>
+            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Touch</span>
           </motion.h1>
           <motion.p variants={fadeIn} className="text-lg md:text-xl text-muted-foreground leading-relaxed">
             Have a groundbreaking project in mind or want to learn more about our services? We'd love to collaborate with you.

@@ -73,7 +73,7 @@ export default function PortfolioPage() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-24 bg-background flex items-center justify-center overflow-hidden border-b border-border">
+      <section className="relative pt-16 pb-16 bg-background flex items-center justify-center overflow-hidden border-b border-border">
         {/* Background Glows */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[150px] pointer-events-none" />
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
@@ -89,7 +89,7 @@ export default function PortfolioPage() {
               Case Studies
             </motion.div>
             <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
-              Digital Products That <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Drive Impact</span>
+              Digital Products That <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Drive Impact</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               Explore how we've helped visionary companies solve complex technical challenges and scale their operations.
@@ -99,7 +99,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Portfolio Grid */}
-      <section className="py-24 bg-muted/30 relative min-h-[800px]">
+      <section className="py-16 bg-muted/30 relative min-h-[800px]">
         <div className="container mx-auto px-4">
 
           {/* Filters */}

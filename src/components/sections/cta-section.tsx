@@ -27,11 +27,11 @@ export function CtaSection({
   secondaryBtnIcon
 }: CtaSectionProps) {
   return (
-    <section className="py-24 relative overflow-hidden border-t border-border">
+    <section className="py-16 relative overflow-hidden border-t border-border">
       <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-10 pointer-events-none" />
       <div className="container mx-auto px-4 relative z-10 text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          {title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">{highlight}</span>
+          {title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">{highlight}</span>
         </h2>
         <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
           {description}

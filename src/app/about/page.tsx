@@ -19,7 +19,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-24 bg-background flex items-center justify-center overflow-hidden">
+      <section className="relative pt-16 pb-16 bg-background flex items-center justify-center overflow-hidden">
         {/* Background Glows */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px] pointer-events-none" />
@@ -35,7 +35,7 @@ export default function AboutPage() {
               Our Story
             </motion.div>
             <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
-              Architecting the Future of <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Digital Experiences</span>
+              Architecting the Future of <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Digital Experiences</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
               We are an elite team of engineers, designers, and strategists building scalable software solutions that drive exponential growth for startups and enterprises globally.
@@ -46,7 +46,7 @@ export default function AboutPage() {
 
 
       {/* Mission & Vision (Asymmetrical Grid) */}
-      <section className="py-32 bg-background relative overflow-hidden">
+      <section className="py-20 bg-background relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="relative group perspective-1000">
@@ -76,7 +76,7 @@ export default function AboutPage() {
             <div className="space-y-12">
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                  Engineering Excellence at Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Core</span>
+                  Engineering Excellence at Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Core</span>
                 </h2>
                 <p className="text-xl text-muted-foreground leading-relaxed">
                   Founded by a group of passionate software architects, CodeLaunch was born out of a desire to bridge the gap between stunning design and flawless backend performance. We don't just write code; we build the infrastructure of tomorrow.
@@ -97,10 +97,10 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values */}
-      <section className="py-32 bg-card/40 border-y border-border relative">
+      <section className="py-20 bg-card/40 border-y border-border relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Values</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Values</span></h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               The fundamental principles that guide our code, our culture, and our relationship with clients.
             </p>

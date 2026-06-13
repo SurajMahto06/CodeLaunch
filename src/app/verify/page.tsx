@@ -55,7 +55,7 @@ export default function VerifyPage() {
             <Award className="w-4 h-4" /> Certification
           </motion.div>
           <motion.h1 variants={fadeIn} className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-            Verify <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Certificate</span>
+            Verify <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Certificate</span>
           </motion.h1>
           <motion.p variants={fadeIn} className="text-muted-foreground text-lg max-w-xl mx-auto mb-6">
             Enter the certificate ID to verify the authenticity of an internship or training program completed at CodeLaunch.

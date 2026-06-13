@@ -59,6 +59,7 @@ export function Footer() {
               <li><Link href="/internship" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Careers & Internships</Link></li>
               <li><Link href="/verify" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Verify Certificate</Link></li>
               <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Contact Us</Link></li>
+              <li><Link href="/faq" className="text-sm text-muted-foreground hover:text-secondary transition-colors">FAQ</Link></li>
             </ul>
           </div>
 

@@ -11,7 +11,15 @@ import {
   Lightbulb,
   CheckCircle2,
   ArrowRight,
-  ArrowUpRight
+  ArrowUpRight,
+  Bot,
+  LayoutDashboard,
+  Building2,
+  Smartphone,
+  Globe,
+  CircleDollarSign,
+  Unlock,
+  GraduationCap
 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -30,40 +38,58 @@ const stagger = {
 export default function ServicesPage() {
   const services = [
     {
+      icon: Bot,
+      title: "AI Chatbots",
+      description: "24/7 lead qualification & customer support. Works on WhatsApp, web, and social media.",
+      features: ["WhatsApp Integration", "Lead Qualification", "24/7 Support", "Social Media Ready"]
+    },
+    {
+      icon: LayoutDashboard,
+      title: "Admin Dashboards",
+      description: "Real-time analytics, KPIs, and reporting. See your business at a glance.",
+      features: ["Real-time Analytics", "KPI Tracking", "Custom Reporting", "Data Visualization"]
+    },
+    {
+      icon: Building2,
+      title: "Industry CRMs",
+      description: "Tailored for finance, healthcare, real estate & more. Manage leads, loans, clients.",
+      features: ["Lead Management", "Finance & Real Estate", "Client Portals", "Loan Tracking"]
+    },
+    {
+      icon: Smartphone,
+      title: "App Development",
+      description: "iOS & Android apps — cross-platform, fast, built for your business. From $499.",
+      features: ["iOS & Android", "Cross-platform Apps", "Fast Performance", "From $499"]
+    },
+    {
+      icon: Globe,
+      title: "Web Design & Deployment",
+      description: "Responsive websites & e-commerce. SEO-optimized, mobile-first. From $50.",
+      features: ["Responsive Design", "SEO Optimized", "Mobile First", "From $50"]
+    },
+    {
       icon: Code2,
-      title: "Web Development",
-      description: "Custom web applications built with Next.js, React, and modern backend technologies. We focus on performance, SEO, and scalability.",
-      features: ["Single Page Applications (SPAs)", "Server-Side Rendering (SSR)", "E-commerce Platforms", "Corporate Portals"]
+      title: "Custom Software",
+      description: "Automate workflows, integrate APIs, build micro SaaS. Your idea, our code.",
+      features: ["Workflow Automation", "API Integration", "Micro SaaS", "Custom Logic"]
     },
     {
-      icon: Database,
-      title: "ERP Development",
-      description: "Comprehensive Enterprise Resource Planning systems tailored to your specific business workflows and processes.",
-      features: ["Inventory Management", "HR & Payroll", "CRM Integration", "Custom Analytics"]
+      icon: CircleDollarSign,
+      title: "Transparent Pricing",
+      description: "No hidden fees. Starting at $50. You own your API keys.",
+      features: ["No Hidden Fees", "Start at $50", "Own your API Keys", "Flexible Plans"]
     },
     {
-      icon: MonitorSmartphone,
-      title: "Mobile App Development",
-      description: "Native and cross-platform mobile applications that provide seamless experiences across all devices.",
-      features: ["React Native / Expo", "iOS & Android", "App Store Deployment", "API Integration"]
+      icon: Unlock,
+      title: "Full Source Code",
+      description: "You own everything. No vendor lock-in. We hand over code, docs, and deploy guides.",
+      features: ["No Vendor Lock-in", "Full Documentation", "Deploy Guides", "100% Ownership"]
     },
     {
-      icon: Palette,
-      title: "UI/UX Design",
-      description: "Data-driven and user-centric design that converts visitors into customers.",
-      features: ["Wireframing", "Prototyping", "Design Systems", "Usability Testing"]
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Architecture & DevOps",
-      description: "Robust cloud infrastructure and automated CI/CD pipelines for high availability and rapid deployment.",
-      features: ["AWS / Azure / GCP", "Docker & Kubernetes", "CI/CD Pipelines", "Serverless Computing"]
-    },
-    {
-      icon: BrainCircuit,
-      title: "AI & Machine Learning",
-      description: "Intelligent solutions that leverage cutting-edge AI models to automate and enhance your business capabilities.",
-      features: ["LLM Integration", "Predictive Analytics", "Custom AI Agents", "Data Engineering"]
+      icon: GraduationCap,
+      title: "Internship Programs",
+      description: "Industry-aligned training programs for aspiring developers.",
+      features: ["Live Projects", "1-on-1 Mentorship", "Certifications", "Job Ready"]
     }
   ]
 
@@ -73,7 +99,7 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-24 bg-background flex items-center justify-center overflow-hidden border-b border-border">
+      <section className="relative pt-16 pb-16 bg-background flex items-center justify-center overflow-hidden border-b border-border">
         {/* Background Glows */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[150px] pointer-events-none" />
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
@@ -89,7 +115,7 @@ export default function ServicesPage() {
               Our Expertise
             </motion.div>
             <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
-              Architecting Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Excellence</span>
+              Architecting Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Excellence</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               End-to-end software engineering and design services tailored for visionary companies. We don't just build apps; we build scalable digital businesses.
@@ -99,10 +125,10 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-32 bg-muted/30 relative">
+      <section className="py-20 bg-muted/30 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">What We <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Do</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">What We <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Do</span></h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Everything you need to build, launch, and grow your digital business.
             </p>

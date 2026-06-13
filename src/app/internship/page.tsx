@@ -163,11 +163,14 @@ function ProgramCard({ program, index }: { program: typeof programs[0], index: n
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
     }
     return () => {
       document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
     }
   }, [isModalOpen])
 
@@ -358,7 +361,7 @@ export default function InternshipPage() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-24 bg-background flex items-center justify-center overflow-hidden border-b border-border">
+      <section className="relative pt-16 pb-16 bg-background flex items-center justify-center overflow-hidden border-b border-border">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/10 rounded-full blur-[150px] pointer-events-none" />
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
 
@@ -373,7 +376,7 @@ export default function InternshipPage() {
               Applications Open for 2026 Batch
             </motion.div>
             <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
-              Launch Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Tech Career</span>
+              Launch Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Tech Career</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-10">
               Join our industry-leading internship programs. Work on live projects, get mentored by senior engineers, and transition from student to professional.
@@ -390,7 +393,7 @@ export default function InternshipPage() {
       </section>
 
       {/* Available Programs Grid */}
-      <section className="py-24 bg-muted/30 relative">
+      <section className="py-16 bg-muted/30 relative">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl font-bold mb-6">Available <span className="text-secondary">Programs</span></h2>
@@ -408,7 +411,7 @@ export default function InternshipPage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-24 relative overflow-hidden bg-background">
+      <section className="py-16 relative overflow-hidden bg-background">
         <div className="container mx-auto px-4">
           <div className="bg-card/30 backdrop-blur-sm border border-border/60 rounded-[3rem] p-8 md:p-16 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
@@ -418,7 +421,7 @@ export default function InternshipPage() {
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary mb-6 text-sm font-semibold tracking-wide uppercase border border-secondary/20">
                   The CodeLaunch Advantage
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Intern With Us?</span></h2>
+                <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Intern With Us?</span></h2>
                 <ul className="space-y-6">
                   {[
                     "Work on real-world, live enterprise projects",
@@ -503,11 +506,11 @@ export default function InternshipPage() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-24 relative overflow-hidden border-t border-border">
+      <section className="py-16 relative overflow-hidden border-t border-border">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[150px] pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Plan</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Plan</span></h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
               Fast-track your career with our guaranteed training and mentorship options.
             </p>
@@ -581,10 +584,10 @@ export default function InternshipPage() {
       </section>
 
       {/* How to Apply / Timeline */}
-      <section className="py-24 bg-muted/30 relative overflow-hidden">
+      <section className="py-16 bg-muted/30 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">How to <span className="text-transparent bg-clip-text bg-gradient-to-r from-transparent via-secondary/60 to-secondary">Apply</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">How to <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Apply</span></h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               A streamlined, 4-step process to kickstart your journey.
             </p>
