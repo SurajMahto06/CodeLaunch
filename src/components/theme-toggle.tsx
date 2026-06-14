@@ -9,7 +9,12 @@ import { Button } from "@/components/ui/button"
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [isOpen, setIsOpen] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
   const dropdownRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Close dropdown when clicking outside
   React.useEffect(() => {
@@ -31,8 +36,14 @@ export function ThemeToggle() {
         className="w-10 h-10 rounded-full focus-visible:ring-0 focus-visible:ring-offset-0"
         aria-label="Toggle theme"
       >
-        <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-        <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        {mounted && theme === "system" ? (
+          <Monitor className="h-5 w-5 transition-all" />
+        ) : (
+          <>
+            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          </>
+        )}
       </Button>
 
       {isOpen && (
