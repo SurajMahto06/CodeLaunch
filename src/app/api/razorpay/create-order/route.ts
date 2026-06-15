@@ -3,9 +3,9 @@ import Razorpay from 'razorpay';
 
 // Pricing configuration
 const PLAN_PRICES: Record<string, number> = {
-  "standard": 999, // Assuming standard is 999
+  "standard": 599,
   "premium": 1199,
-  "elite": 5999,
+  "elite": 2999,
 };
 
 export async function POST(request: Request) {
@@ -24,9 +24,9 @@ export async function POST(request: Request) {
     if (couponCode) {
       const code = couponCode.toUpperCase().trim();
 
-      if (code === 'FLAT50') {
-        // 50% Off
-        discountAmount = originalPrice * 0.50;
+      if (code === 'FLAT20') {
+        // 20% Off
+        discountAmount = originalPrice * 0.20;
         finalPrice = originalPrice - discountAmount;
       } else if (code === 'CODE100') {
         // Flat Rs 100 Off

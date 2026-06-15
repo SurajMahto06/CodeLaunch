@@ -75,7 +75,12 @@ export async function POST(request: Request) {
     });
 
     const attachments = [];
-    let resumeDisplay = resumeMethod === 'link' ? `<a href="${safeResumeLink}">View Resume Link</a>` : 'File Uploaded (See Attachments)';
+    let resumeDisplay = 'Not Provided';
+    if (resumeMethod === 'link' && safeResumeLink !== 'N/A') {
+      resumeDisplay = `<a href="${safeResumeLink}">View Resume Link</a>`;
+    } else if (resumeMethod === 'upload' && resumeFile && resumeFile.size > 0) {
+      resumeDisplay = 'File Uploaded (See Attachments)';
+    }
 
     if (resumeMethod === 'upload' && resumeFile && resumeFile.size > 0) {
       const buffer = Buffer.from(await resumeFile.arrayBuffer());
@@ -203,7 +208,7 @@ export async function POST(request: Request) {
     // Send Telegram Notification
     if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
       try {
-        const tgMessage = `✅ <b>PAID INTERNSHIP APPLICATION</b>\n━━━━━━━━━━━━━━━━━━\n💳 <b>Payment ID:</b> <code>${razorpayPaymentId}</code>\n👤 <b>Name:</b> <code>${safeFullName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n📞 <b>Phone:</b> <code>${safePhone}</code>\n💻 <b>Program:</b> <i>${safeTrack}</i>\n📦 <b>Plan:</b> <b>${safePlan.toUpperCase()}</b>\n\n📎 <b>Resume:</b> ${resumeMethod === 'link' ? `<a href="${safeResumeLink}">View Link</a>` : 'File Uploaded (See Email)'}\n\n💬 <b>Cover Letter:</b>\n<blockquote>${safeCoverLetter}</blockquote>\n\n🌐 <i>via CodeLaunch Website</i>`;
+        const tgMessage = `✅ <b>PAID INTERNSHIP APPLICATION</b>\n━━━━━━━━━━━━━━━━━━\n💳 <b>Payment ID:</b> <code>${razorpayPaymentId}</code>\n👤 <b>Name:</b> <code>${safeFullName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n📞 <b>Phone:</b> <code>${safePhone}</code>\n💻 <b>Program:</b> <i>${safeTrack}</i>\n📦 <b>Plan:</b> <b>${safePlan.toUpperCase()}</b>\n\n📎 <b>Resume:</b> ${resumeMethod === 'link' && safeResumeLink !== 'N/A' ? `<a href="${safeResumeLink}">View Link</a>` : (resumeMethod === 'upload' && resumeFile && resumeFile.size > 0 ? 'File Uploaded (See Email)' : 'Not Provided')}\n\n💬 <b>Cover Letter:</b>\n<blockquote>${safeCoverLetter}</blockquote>\n\n🌐 <i>via CodeLaunch Website</i>`;
         const tgUrl = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
 
         await fetch(tgUrl, {

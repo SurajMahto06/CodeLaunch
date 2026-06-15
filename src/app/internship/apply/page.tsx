@@ -94,7 +94,7 @@ const pricingTiers = [
   {
     id: "elite",
     name: "Elite Mentorship",
-    price: "₹5,999",
+    price: "₹2,999",
     description: "Guaranteed 1-on-1 mentorship and full premium access.",
     features: [
       { title: "1-on-1 Mentorship", desc: "Dedicated senior engineer mentor." },
@@ -167,7 +167,7 @@ function ApplicationForm() {
   const handleApplyCoupon = async () => {
     if (!couponCode.trim() || watchedPlan === 'general') return
     setIsApplyingCoupon(true)
-    
+
     try {
       const response = await fetch('/api/razorpay/create-order', {
         method: 'POST',
@@ -175,7 +175,7 @@ function ApplicationForm() {
         body: JSON.stringify({ plan: watchedPlan, couponCode: couponCode.trim() })
       })
       const data = await response.json()
-      
+
       if (response.ok && data.discountAmount > 0) {
         setCouponStatus("valid")
         setDiscountAmount(data.discountAmount)
@@ -206,11 +206,7 @@ function ApplicationForm() {
   }, [watchedPlan])
 
   const onSubmit = async (data: ApplyFormValues) => {
-    if (resumeMethod === "upload") {
-      if (!resumeFile) {
-        setResumeFileError("Please upload your resume")
-        return
-      }
+    if (resumeMethod === "upload" && resumeFile) {
       if (resumeFile.size > 5 * 1024 * 1024) {
         setResumeFileError("File size must be less than 5MB")
         return
@@ -229,7 +225,7 @@ function ApplicationForm() {
         if (data.portfolio) formData.append("portfolio", data.portfolio)
         if (data.coverLetter) formData.append("coverLetter", data.coverLetter)
         if (data.website) formData.append("website", data.website) // Honeypot
-        
+
         formData.append("resumeMethod", resumeMethod)
         if (resumeMethod === "link" && data.resume) {
           formData.append("resumeLink", data.resume)
@@ -291,7 +287,7 @@ function ApplicationForm() {
               if (data.portfolio) formData.append("portfolio", data.portfolio)
               if (data.coverLetter) formData.append("coverLetter", data.coverLetter)
               if (data.website) formData.append("website", data.website)
-              
+
               formData.append("resumeMethod", resumeMethod)
               if (resumeMethod === "link" && data.resume) {
                 formData.append("resumeLink", data.resume)
@@ -731,9 +727,9 @@ function ApplicationForm() {
                       placeholder="e.g. FLAT50"
                       className="flex-1 h-11 bg-background border rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 border-border/60 focus:border-secondary uppercase"
                     />
-                    <Button 
-                      type="button" 
-                      variant="outline" 
+                    <Button
+                      type="button"
+                      variant="outline"
                       className="h-11 border-border/60"
                       onClick={handleApplyCoupon}
                       disabled={isApplyingCoupon || !couponCode.trim()}
@@ -741,7 +737,7 @@ function ApplicationForm() {
                       {isApplyingCoupon ? <Loader2 className="w-4 h-4 animate-spin" /> : "Apply"}
                     </Button>
                   </div>
-                  
+
                   {couponStatus === "valid" && (
                     <p className="text-green-500 text-xs font-medium mt-2 flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5" /> Coupon applied! You saved ₹{discountAmount}
