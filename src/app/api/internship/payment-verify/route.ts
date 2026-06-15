@@ -118,7 +118,7 @@ export async function POST(request: Request) {
               <div class="field"><div class="label">Full Name</div><div class="value">${safeFullName}</div></div>
               <div class="field"><div class="label">Email Address</div><div class="value"><a href="mailto:${safeEmail}" style="color: #3b82f6; text-decoration: none;">${safeEmail}</a></div></div>
               <div class="field"><div class="label">Phone Number</div><div class="value">${safePhone}</div></div>
-              <div class="field"><div class="label">Program Track</div><div class="value">${safeTrack}</div></div>
+              <div class="field"><div class="label">Program</div><div class="value">${safeTrack}</div></div>
               <div class="field"><div class="label">Plan Chosen</div><div class="value" style="text-transform: capitalize;">${safePlan}</div></div>
               <div class="field"><div class="label">Portfolio</div><div class="value">${safePortfolio !== 'N/A' ? `<a href="${safePortfolio}" style="color: #3b82f6;">${safePortfolio}</a>` : 'N/A'}</div></div>
               <div class="field"><div class="label">Resume</div><div class="value">${resumeDisplay}</div></div>
@@ -203,7 +203,7 @@ export async function POST(request: Request) {
     // Send Telegram Notification
     if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
       try {
-        const tgMessage = `✅ <b>PAID INTERNSHIP APPLICATION</b>\n━━━━━━━━━━━━━━━━━━\n💳 <b>Payment ID:</b> <code>${razorpayPaymentId}</code>\n👤 <b>Name:</b> <code>${safeFullName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n📞 <b>Phone:</b> <code>${safePhone}</code>\n💻 <b>Track:</b> <i>${safeTrack}</i>\n📦 <b>Plan:</b> <b>${safePlan.toUpperCase()}</b>\n\n📎 <b>Resume:</b> ${resumeMethod === 'link' ? `<a href="${safeResumeLink}">View Link</a>` : 'File Uploaded (See Email)'}\n\n💬 <b>Cover Letter:</b>\n<blockquote>${safeCoverLetter}</blockquote>\n\n🌐 <i>via CodeLaunch Website</i>`;
+        const tgMessage = `✅ <b>PAID INTERNSHIP APPLICATION</b>\n━━━━━━━━━━━━━━━━━━\n💳 <b>Payment ID:</b> <code>${razorpayPaymentId}</code>\n👤 <b>Name:</b> <code>${safeFullName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n📞 <b>Phone:</b> <code>${safePhone}</code>\n💻 <b>Program:</b> <i>${safeTrack}</i>\n📦 <b>Plan:</b> <b>${safePlan.toUpperCase()}</b>\n\n📎 <b>Resume:</b> ${resumeMethod === 'link' ? `<a href="${safeResumeLink}">View Link</a>` : 'File Uploaded (See Email)'}\n\n💬 <b>Cover Letter:</b>\n<blockquote>${safeCoverLetter}</blockquote>\n\n🌐 <i>via CodeLaunch Website</i>`;
         const tgUrl = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
 
         await fetch(tgUrl, {
