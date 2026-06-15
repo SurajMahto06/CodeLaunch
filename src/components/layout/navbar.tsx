@@ -115,7 +115,7 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-background flex-1 overflow-y-auto border-t border-border">
-          <div className="px-4 py-6 flex flex-col gap-4 h-full">
+          <div className="px-4 py-6 flex flex-col h-full">
             {navLinks.map((link) => (
               <Link
                 key={link.name}

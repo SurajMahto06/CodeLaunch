@@ -71,6 +71,7 @@ const pricingTiers = [
     id: "standard",
     name: "Standard Plan",
     price: "₹599",
+    originalPrice: "₹999",
     description: "Perfect for self-paced learners who just need materials.",
     features: [
       { title: "PDF Materials", desc: "Comprehensive guides and project briefs." },
@@ -82,6 +83,7 @@ const pricingTiers = [
     id: "premium",
     name: "Premium Plan",
     price: "₹1,199",
+    originalPrice: "₹2,499",
     description: "The complete training experience with video lectures.",
     features: [
       { title: "Video Portal", desc: "Access to our premium video lectures." },
@@ -95,6 +97,7 @@ const pricingTiers = [
     id: "elite",
     name: "Elite Mentorship",
     price: "₹2,999",
+    originalPrice: "₹4,999",
     description: "Guaranteed 1-on-1 mentorship and full premium access.",
     features: [
       { title: "1-on-1 Mentorship", desc: "Dedicated senior engineer mentor." },
@@ -675,7 +678,9 @@ function ApplicationForm() {
                   className="w-full h-12 bg-background border rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 border-border/60 focus:border-secondary appearance-none cursor-pointer text-foreground"
                 >
                   {pricingTiers.map(tier => (
-                    <option key={tier.id} value={tier.id}>{tier.name} - {tier.price}</option>
+                    <option key={tier.id} value={tier.id}>
+                      {tier.name} - {tier.price}
+                    </option>
                   ))}
                 </select>
                 <ChevronDown className="absolute right-4 top-4 h-4 w-4 text-muted-foreground pointer-events-none" />
@@ -690,9 +695,16 @@ function ApplicationForm() {
               >
                 <div className="flex justify-between items-center mb-3 pb-3 border-b border-secondary/10">
                   <h4 className="font-bold text-sm text-foreground">{pricingTiers.find(p => p.id === watchedPlan)?.name}</h4>
-                  <span className="text-xs font-bold text-secondary bg-secondary/10 px-2 py-1 rounded-md">
-                    {pricingTiers.find(p => p.id === watchedPlan)?.price}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {pricingTiers.find(p => p.id === watchedPlan)?.originalPrice && (
+                      <span className="text-xs font-semibold text-muted-foreground line-through decoration-muted-foreground/50">
+                        {pricingTiers.find(p => p.id === watchedPlan)?.originalPrice}
+                      </span>
+                    )}
+                    <span className="text-xs font-bold text-secondary bg-secondary/10 px-2 py-1 rounded-md">
+                      {pricingTiers.find(p => p.id === watchedPlan)?.price}
+                    </span>
+                  </div>
                 </div>
                 <p className="text-xs text-muted-foreground mb-4">
                   {pricingTiers.find(p => p.id === watchedPlan)?.description}

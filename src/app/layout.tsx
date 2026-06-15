@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden" data-scroll-behavior="smooth">
       <body className={`${inter.className} min-h-screen bg-background antialiased flex flex-col overflow-x-hidden`}>
         <ThemeProvider
           attribute="class"

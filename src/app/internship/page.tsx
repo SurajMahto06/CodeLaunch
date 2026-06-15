@@ -24,6 +24,7 @@ import {
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { CtaSection } from "@/components/sections/cta-section"
+import { CertificateDemo } from "@/components/sections/certificate-demo"
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -316,6 +317,7 @@ export default function InternshipPage() {
     {
       name: "Standard",
       price: "₹599",
+      originalPrice: "₹999",
       description: "Perfect for self-paced learners who just need materials.",
       features: [
         "PDF Materials: Comprehensive guides and project briefs",
@@ -329,6 +331,7 @@ export default function InternshipPage() {
     {
       name: "Premium",
       price: "₹1,199",
+      originalPrice: "₹2,499",
       description: "The complete training experience with video lectures.",
       features: [
         "Video Portal: Access to our premium video lectures",
@@ -344,6 +347,7 @@ export default function InternshipPage() {
     {
       name: "Elite Mentorship",
       price: "₹2,999",
+      originalPrice: "₹4,999",
       description: "Guaranteed 1-on-1 mentorship and full premium access.",
       features: [
         "1-on-1 Mentorship: Dedicated senior engineer mentor",
@@ -505,6 +509,9 @@ export default function InternshipPage() {
         </div>
       </section>
 
+      {/* Demo Certificate Section */}
+      <CertificateDemo />
+
       {/* Pricing Section */}
       <section className="py-16 relative overflow-hidden border-t border-border">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[150px] pointer-events-none" />
@@ -541,8 +548,11 @@ export default function InternshipPage() {
                 </div>
 
                 <div className="mb-8 pb-8 border-b border-border/50">
-                  <div className="flex items-baseline gap-1">
+                  <div className="flex items-baseline gap-3">
                     <span className="text-5xl font-black">{tier.price}</span>
+                    {tier.originalPrice && (
+                      <span className="text-2xl font-bold text-muted-foreground/60 line-through decoration-muted-foreground/40">{tier.originalPrice}</span>
+                    )}
                   </div>
                 </div>
 

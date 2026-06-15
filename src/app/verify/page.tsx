@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { Button } from "@/components/ui/button"
-import { Search, CheckCircle2, XCircle, Award, Calendar, User, Building, ArrowRight, ShieldCheck, Lock, QrCode, Landmark, Zap } from "lucide-react"
-import { motion } from "framer-motion"
+import { Search, CheckCircle2, XCircle, Award, Calendar, User, Building, ArrowRight, ShieldCheck, Lock, QrCode, Landmark, Zap, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
@@ -26,6 +26,21 @@ const stagger = {
 
 export default function VerifyPage() {
   const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle")
+  const [certData, setCertData] = React.useState<any>(null)
+
+  React.useEffect(() => {
+    if (status === "success" || status === "error") {
+      document.body.style.overflow = "hidden"
+      document.documentElement.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+      document.documentElement.style.overflow = "unset"
+    }
+    return () => {
+      document.body.style.overflow = "unset"
+      document.documentElement.style.overflow = "unset"
+    }
+  }, [status])
 
   const { register, handleSubmit, formState: { errors }, watch } = useForm<VerifyFormValues>({
     resolver: zodResolver(verifySchema),
@@ -34,18 +49,28 @@ export default function VerifyPage() {
 
   const certificateId = watch("certificateId")
 
-  const onSubmit = (data: VerifyFormValues) => {
+  const onSubmit = async (data: VerifyFormValues) => {
     setStatus("loading")
+    setCertData(null)
 
-    // Simulate API call for verification
-    setTimeout(() => {
-      // For demo purposes, if it starts with 'CL-', it's valid, otherwise invalid
-      if (data.certificateId.toUpperCase().startsWith("CL-")) {
+    try {
+      const response = await fetch('/api/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: data.certificateId })
+      })
+      const result = await response.json()
+
+      if (response.ok && result.success) {
+        setCertData(result.certificate)
         setStatus("success")
       } else {
         setStatus("error")
       }
-    }, 1500)
+    } catch (error) {
+      console.error("Verification error:", error)
+      setStatus("error")
+    }
   }
 
   return (
@@ -115,88 +140,130 @@ export default function VerifyPage() {
             </form>
           </div>
         </motion.div>
-
-        {/* Success State */}
-        {status === "success" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-green-500/10 backdrop-blur-md border border-green-500/20 rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-green-500/10 rounded-full blur-[100px] pointer-events-none" />
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-8 pb-8 border-b border-green-500/20">
-                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <CheckCircle2 className="h-8 w-8 text-green-500" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-green-500 tracking-tight">Certificate Verified</h2>
-                  <p className="text-muted-foreground mt-1">This is a valid CodeLaunch credential.</p>
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-8">
-                <div className="space-y-2">
-                  <div className="text-sm text-muted-foreground flex items-center gap-2 font-medium">
-                    <User className="h-4 w-4 text-green-500/70" /> Student Name
-                  </div>
-                  <div className="font-semibold text-lg">Alex Johnson</div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-sm text-muted-foreground flex items-center gap-2 font-medium">
-                    <Building className="h-4 w-4 text-green-500/70" /> Role
-                  </div>
-                  <div className="font-semibold text-lg">Full Stack Developer Intern</div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-sm text-muted-foreground flex items-center gap-2 font-medium">
-                    <Calendar className="h-4 w-4 text-green-500/70" /> Duration
-                  </div>
-                  <div className="font-semibold text-lg">Jan 2026 - Jun 2026</div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-sm text-muted-foreground flex items-center gap-2 font-medium">
-                    <Award className="h-4 w-4 text-green-500/70" /> Certificate ID
-                  </div>
-                  <div className="font-semibold text-lg uppercase tracking-wider">{certificateId}</div>
-                </div>
-
-                <div className="space-y-2 col-span-1 sm:col-span-2 pt-4 border-t border-green-500/20">
-                  <div className="text-sm text-muted-foreground flex items-center gap-2 font-medium">
-                    <CheckCircle2 className="h-4 w-4 text-green-500/70" /> Skills & Technologies Verified
-                  </div>
-                  <div className="font-semibold text-lg text-foreground/90 leading-relaxed">
-                    Next.js, TypeScript, Full-Stack Architecture, Tailwind CSS, REST API Integration
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Error State */}
-        {status === "error" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-destructive/10 backdrop-blur-md border border-destructive/20 rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative overflow-hidden text-center"
-          >
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-destructive/10 rounded-full blur-[100px] pointer-events-none" />
-
-            <div className="relative z-10">
-              <div className="w-20 h-20 bg-destructive/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <XCircle className="h-10 w-10 text-destructive" />
-              </div>
-              <h2 className="text-2xl font-bold text-destructive mb-3 tracking-tight">Verification Failed</h2>
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-md mx-auto">
-                We couldn't find a certificate matching the ID <span className="font-semibold text-foreground uppercase">"{certificateId}"</span>. Please check the ID and try again, or <Link href="/contact" className="text-secondary hover:underline underline-offset-4 transition-colors">contact support</Link> if you believe this is an error.
-              </p>
-            </div>
-          </motion.div>
-        )}
-
       </div>
+
+      <AnimatePresence>
+          {/* Success State */}
+          {status === "success" && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+              onClick={() => setStatus("idle")}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-card border border-border/60 rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 md:p-10 shadow-2xl relative overflow-y-auto max-h-[90vh] w-full max-w-2xl"
+              >
+                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-green-500/10 rounded-full blur-[100px] pointer-events-none" />
+
+                <button
+                  onClick={() => setStatus("idle")}
+                  className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 bg-background/50 hover:bg-secondary/10 rounded-full transition-colors text-muted-foreground hover:text-foreground z-20"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="relative z-10 mt-2 sm:mt-0">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-5 sm:mb-8 pb-5 sm:pb-8 border-b border-border/50 pr-8 sm:pr-10">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle2 className="h-6 w-6 sm:h-8 sm:w-8 text-green-500" />
+                    </div>
+                    <div>
+                      <h2 className="text-lg sm:text-2xl font-bold text-green-500 tracking-tight">Certificate Verified</h2>
+                      <p className="text-muted-foreground text-xs sm:text-base mt-0.5 sm:mt-1">This is a valid CodeLaunch credential.</p>
+                    </div>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-8">
+                    <div className="space-y-1 sm:space-y-2">
+                      <div className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1.5 sm:gap-2 font-medium">
+                        <User className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-500/70" /> Student Name
+                      </div>
+                      <div className="font-semibold text-sm sm:text-lg">{certData.studentName}</div>
+                    </div>
+                    <div className="space-y-1 sm:space-y-2">
+                      <div className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1.5 sm:gap-2 font-medium">
+                        <Building className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-500/70" /> Role
+                      </div>
+                      <div className="font-semibold text-sm sm:text-lg">{certData.role}</div>
+                    </div>
+                    <div className="space-y-1 sm:space-y-2">
+                      <div className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1.5 sm:gap-2 font-medium">
+                        <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-500/70" /> Duration
+                      </div>
+                      <div className="font-semibold text-sm sm:text-lg">{certData.duration}</div>
+                    </div>
+                    <div className="space-y-1 sm:space-y-2">
+                      <div className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1.5 sm:gap-2 font-medium">
+                        <Award className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-500/70" /> Certificate ID
+                      </div>
+                      <div className="font-semibold text-sm sm:text-lg uppercase tracking-wider">{certData.id}</div>
+                    </div>
+
+                    <div className="space-y-1 sm:space-y-2 col-span-1 sm:col-span-2 pt-3 sm:pt-4 border-t border-border/50">
+                      <div className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1.5 sm:gap-2 font-medium">
+                        <CheckCircle2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-green-500/70" /> Date of Issue
+                      </div>
+                      <div className="font-semibold text-sm sm:text-lg text-foreground/90 leading-relaxed">
+                        {certData.issueDate}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Error State */}
+          {status === "error" && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+              onClick={() => setStatus("idle")}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-card border border-destructive/20 rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 md:p-10 shadow-2xl relative overflow-y-auto max-h-[90vh] text-center w-full max-w-md"
+              >
+                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-destructive/5 rounded-full blur-[100px] pointer-events-none" />
+
+                <button
+                  onClick={() => setStatus("idle")}
+                  className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 bg-background/50 hover:bg-destructive/10 rounded-full transition-colors text-muted-foreground hover:text-foreground z-20"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="relative z-10 mt-6 sm:mt-4">
+                  <div className="w-14 h-14 sm:w-20 sm:h-20 bg-destructive/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <XCircle className="h-7 w-7 sm:h-10 sm:w-10 text-destructive" />
+                  </div>
+                  <h2 className="text-lg sm:text-2xl font-bold text-destructive mb-2 sm:mb-3 tracking-tight">Verification Failed</h2>
+                  <p className="text-muted-foreground text-xs sm:text-base leading-relaxed max-w-sm mx-auto">
+                    We couldn't find a certificate matching the ID <span className="font-semibold text-foreground uppercase">"{certificateId}"</span>. Please check the ID and try again.
+                  </p>
+                  <Button
+                    onClick={() => setStatus("idle")}
+                    variant="outline"
+                    className="mt-5 sm:mt-8 w-full rounded-xl border-destructive/20 hover:bg-destructive/5 text-sm sm:text-base"
+                  >
+                    Try Again
+                  </Button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
     </div>
   )
 }
