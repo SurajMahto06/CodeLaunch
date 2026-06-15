@@ -5,6 +5,20 @@ import { motion } from "framer-motion"
 import { Mail, MapPin, Phone, MessageSquare, Send, Calendar, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+
+const contactSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Invalid email address"),
+  inquiryType: z.string().min(1, "Please select an inquiry type"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+  website: z.string().optional(), // Honeypot field
+})
+
+type ContactFormValues = z.infer<typeof contactSchema>
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -16,16 +30,53 @@ const stagger = {
 }
 
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSuccess(true)
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      inquiryType: "",
+      message: "",
+      website: "",
+    }
+  })
+
+  const onSubmit = async (data: ContactFormValues) => {
+    try {
+      const inquiryLabels: Record<string, string> = {
+        "project": "Project Development",
+        "consulting": "Consulting & Strategy",
+        "internship": "Internship & Careers",
+        "other": "Other Inquiry",
+      }
+
+      const payload = {
+        ...data,
+        inquiryType: inquiryLabels[data.inquiryType] || data.inquiryType
+      }
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (response.ok) {
+        setIsSuccess(true)
+        reset()
+        setTimeout(() => setIsSuccess(false), 5000)
+      } else {
+        alert('Failed to send message. Please try again.')
+      }
+    } catch (error) {
+      console.error('Submission error:', error)
+      alert('An error occurred. Please try again later.')
+    }
   }
 
   return (
@@ -135,7 +186,7 @@ export default function ContactPage() {
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="relative z-10 space-y-6">
                   <h3 className="text-2xl font-bold mb-8 tracking-tight">Send us a Message</h3>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -144,20 +195,35 @@ export default function ContactPage() {
                       <input
                         type="text"
                         id="firstName"
-                        required
-                        className="w-full h-12 bg-background border border-border/60 focus:border-secondary rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 placeholder:text-muted-foreground/50"
-                        placeholder="John"
+                        {...register("firstName")}
+                        className={`w-full h-12 bg-background border rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 placeholder:text-muted-foreground/50 ${errors.firstName ? 'border-red-500/50 focus:border-red-500' : 'border-border/60 focus:border-secondary'}`}
+                        placeholder="First Name"
+                      />
+                      {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName.message}</p>}
+                    </div>
+
+                    {/* Honeypot Field (Hidden from users, visible to bots) */}
+                    <div style={{ display: 'none' }} aria-hidden="true">
+                      <label htmlFor="website">Website</label>
+                      <input
+                        type="text"
+                        id="website"
+                        {...register("website")}
+                        tabIndex={-1}
+                        autoComplete="off"
                       />
                     </div>
+
                     <div>
                       <label htmlFor="lastName" className="block text-sm font-semibold text-foreground/80 mb-2">Last Name <span className="text-red-500">*</span></label>
                       <input
                         type="text"
                         id="lastName"
-                        required
-                        className="w-full h-12 bg-background border border-border/60 focus:border-secondary rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 placeholder:text-muted-foreground/50"
-                        placeholder="Doe"
+                        {...register("lastName")}
+                        className={`w-full h-12 bg-background border rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 placeholder:text-muted-foreground/50 ${errors.lastName ? 'border-red-500/50 focus:border-red-500' : 'border-border/60 focus:border-secondary'}`}
+                        placeholder="Last Name"
                       />
+                      {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName.message}</p>}
                     </div>
                   </div>
 
@@ -166,10 +232,11 @@ export default function ContactPage() {
                     <input
                       type="email"
                       id="email"
-                      required
-                      className="w-full h-12 bg-background border border-border/60 focus:border-secondary rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 placeholder:text-muted-foreground/50"
-                      placeholder="john@example.com"
+                      {...register("email")}
+                      className={`w-full h-12 bg-background border rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 placeholder:text-muted-foreground/50 ${errors.email ? 'border-red-500/50 focus:border-red-500' : 'border-border/60 focus:border-secondary'}`}
+                      placeholder="your@example.com"
                     />
+                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                   </div>
 
                   <div>
@@ -177,8 +244,8 @@ export default function ContactPage() {
                     <div className="relative">
                       <select
                         id="inquiryType"
-                        required
-                        className="w-full h-12 bg-background border border-border/60 focus:border-secondary rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 appearance-none cursor-pointer"
+                        {...register("inquiryType")}
+                        className={`w-full h-12 bg-background border rounded-xl px-4 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 appearance-none cursor-pointer ${errors.inquiryType ? 'border-red-500/50 focus:border-red-500' : 'border-border/60 focus:border-secondary'}`}
                       >
                         <option value="">Select a topic</option>
                         <option value="project">Project Development</option>
@@ -190,6 +257,7 @@ export default function ContactPage() {
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                       </div>
                     </div>
+                    {errors.inquiryType && <p className="text-red-500 text-xs mt-1">{errors.inquiryType.message}</p>}
                   </div>
 
                   <div>
@@ -197,10 +265,11 @@ export default function ContactPage() {
                     <textarea
                       id="message"
                       rows={5}
-                      required
-                      className="w-full bg-background border border-border/60 focus:border-secondary rounded-xl px-4 py-3 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 placeholder:text-muted-foreground/50 resize-none"
+                      {...register("message")}
+                      className={`w-full bg-background border rounded-xl px-4 py-3 text-sm outline-none transition-all focus:ring-2 focus:ring-secondary/50 placeholder:text-muted-foreground/50 resize-none ${errors.message ? 'border-red-500/50 focus:border-red-500' : 'border-border/60 focus:border-secondary'}`}
                       placeholder="Tell us about your project or inquiry..."
                     ></textarea>
+                    {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
                   </div>
 
                   <Button

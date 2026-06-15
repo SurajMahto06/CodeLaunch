@@ -5,6 +5,15 @@ import { Button } from "@/components/ui/button"
 import { Search, CheckCircle2, XCircle, Award, Calendar, User, Building, ArrowRight, ShieldCheck, Lock, QrCode, Landmark, Zap } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+
+const verifySchema = z.object({
+  certificateId: z.string().min(1, "Certificate ID is required"),
+})
+
+type VerifyFormValues = z.infer<typeof verifySchema>
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -16,19 +25,22 @@ const stagger = {
 }
 
 export default function VerifyPage() {
-  const [certificateId, setCertificateId] = React.useState("")
   const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle")
 
-  const handleVerify = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!certificateId.trim()) return
+  const { register, handleSubmit, formState: { errors }, watch } = useForm<VerifyFormValues>({
+    resolver: zodResolver(verifySchema),
+    defaultValues: { certificateId: "" }
+  })
 
+  const certificateId = watch("certificateId")
+
+  const onSubmit = (data: VerifyFormValues) => {
     setStatus("loading")
 
     // Simulate API call for verification
     setTimeout(() => {
       // For demo purposes, if it starts with 'CL-', it's valid, otherwise invalid
-      if (certificateId.toUpperCase().startsWith("CL-")) {
+      if (data.certificateId.toUpperCase().startsWith("CL-")) {
         setStatus("success")
       } else {
         setStatus("error")
@@ -86,17 +98,16 @@ export default function VerifyPage() {
           <div className="bg-card/40 backdrop-blur-md border border-border/60 rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative overflow-hidden mb-8">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
 
-            <form onSubmit={handleVerify} className="relative z-10 flex flex-col sm:flex-row gap-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="relative z-10 flex flex-col sm:flex-row gap-4">
               <div className="relative flex-1">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <input
                   type="text"
-                  value={certificateId}
-                  onChange={(e) => setCertificateId(e.target.value)}
+                  {...register("certificateId")}
                   placeholder="Enter Certificate ID (e.g., CL-2026-XYZ)"
-                  className="w-full pl-12 pr-4 h-14 rounded-xl border border-input/50 bg-background/50 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all"
-                  required
+                  className={`w-full pl-12 pr-4 h-14 rounded-xl border bg-background/50 focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all ${errors.certificateId ? 'border-red-500/50 focus:border-red-500' : 'border-input/50 focus:border-secondary'}`}
                 />
+                {errors.certificateId && <p className="text-red-500 text-xs mt-1 absolute -bottom-5 left-2">{errors.certificateId.message}</p>}
               </div>
               <Button type="submit" disabled={status === "loading"} className="h-14 px-8 rounded-xl font-semibold bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-[0_0_40px_-10px_rgba(6,182,212,0.4)] transition-all">
                 {status === "loading" ? "Verifying..." : "Verify Now"}
