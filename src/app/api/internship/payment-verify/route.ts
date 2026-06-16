@@ -139,10 +139,8 @@ export async function POST(request: Request) {
       attachments: attachments.length > 0 ? attachments : undefined
     };
 
-    // Dynamic message based on plan
-    const planSpecificMessage = safePlan === 'standard'
-      ? "Our team will reach out to you shortly with your comprehensive PDF materials, project briefs, and the schedule for your weekly doubt sessions."
-      : "Our team will reach out to you shortly with your premium video portal access credentials and the onboarding schedule.";
+    // Standard message for all plans since everyone gets portal access
+    const planSpecificMessage = "Our team will reach out to you shortly with your CodeLaunch portal access credentials and the onboarding schedule.";
 
     // Email to Applicant
     const userMailOptions = {
