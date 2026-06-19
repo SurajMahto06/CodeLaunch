@@ -80,7 +80,7 @@ const jobs = [
     id: "backend-laravel",
     title: "Backend Engineer (Laravel & PostgreSQL)",
     department: "Engineering",
-    location: "Hybrid (Chaibasa Hub)",
+    location: "Remote (India)",
     type: "Full-Time",
     experience: "2+ Years",
     description: "We are seeking a backend specialist to build secure database schemas, scale RESTful APIs, and configure cron queues using Laravel. You will work on robust billing portals and client ERP modules.",
@@ -92,9 +92,9 @@ const jobs = [
       "Git version control and basic DevOps pipeline knowledge."
     ],
     benefits: [
-      "Premium On-site / Hybrid Work Benefits",
+      "Competitive Salary",
       "Regular Career Development & Tech Courses",
-      "Free On-site Meals & Coffee at Head Office",
+      "Flexible Remote Work Setup",
       "Annual Paid Time Off"
     ]
   },
@@ -146,9 +146,9 @@ const values = [
 ]
 
 const perks = [
-  { icon: Laptop, title: "High-End Gear", desc: "Top-tier MacBooks, high-refresh-rate monitors, and home office setups." },
+  { icon: Laptop, title: "Modern Tech Stack", desc: "Work with bleeding-edge technologies. We build scalable products using Next.js, React, Node.js, and generative AI." },
   { icon: Heart, title: "Health & Wellness", desc: "Premium health insurance coverages and wellness stipends." },
-  { icon: Coffee, title: "Office Vibe", desc: "Free catered lunches, fully stocked snacks pantry, and creative brainstorm lounges." },
+  { icon: Coffee, title: "Remote-First Culture", desc: "Work from anywhere with flexible hours, virtual team events, and asynchronous communication." },
   { icon: Sparkles, title: "Learning Budgets", desc: "Paid technical courses, design assets, and attendance at tech conferences." }
 ]
 

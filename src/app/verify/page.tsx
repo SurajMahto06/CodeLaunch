@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import VerifyClient from "./verify-client"
+import VerifyClient from "./client"
 
 export const metadata: Metadata = {
   title: "Verify Certificate",
