@@ -70,11 +70,9 @@ export function Navbar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
-            <Link href="/" onClick={scrollToTop} className="flex items-center gap-2 group">
-              <div className="bg-secondary/10 p-2 rounded-xl group-hover:bg-secondary/20 transition-colors">
-                <Code2 className="h-6 w-6 text-secondary" />
-              </div>
-              <span className="font-bold text-xl tracking-tight">Prokodex</span>
+            <Link href="/" onClick={(e) => { if (pathname === "/") scrollToTop(); }} className="flex items-center group">
+              <img src="/logo-dark.png?v=4" alt="Prokodex Logo" className="h-11 w-auto hidden dark:block" />
+              <img src="/logo-light.png?v=4" alt="Prokodex Logo" className="h-11 w-auto block dark:hidden" />
             </Link>
           </div>
 
@@ -83,7 +81,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={scrollToTop}
+                onClick={(e) => { if (pathname === link.href) scrollToTop(); }}
                 className={`text-sm font-medium transition-colors ${pathname === link.href
                   ? "text-secondary"
                   : "text-foreground/80 hover:text-secondary"
@@ -120,9 +118,9 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={() => {
+                onClick={(e) => {
                   setIsMobileMenuOpen(false)
-                  scrollToTop()
+                  if (pathname === link.href) scrollToTop();
                 }}
                 className={`block px-4 py-3 text-lg font-medium rounded-xl transition-colors ${pathname === link.href
                   ? "bg-secondary/10 text-secondary"
@@ -133,9 +131,9 @@ export function Navbar() {
               </Link>
             ))}
             <div className="pt-2 flex flex-col gap-4">
-              <Link href="/contact" className="w-full" onClick={() => {
+              <Link href="/contact" className="w-full" onClick={(e) => {
                 setIsMobileMenuOpen(false)
-                scrollToTop()
+                if (pathname === "/contact") scrollToTop();
               }}>
                 <Button size="lg" className="w-full justify-center text-lg">Let's Talk</Button>
               </Link>
