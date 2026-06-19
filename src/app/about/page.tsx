@@ -79,7 +79,7 @@ export default function AboutPage() {
                   Engineering Excellence at Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Core</span>
                 </h2>
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  Founded by a group of passionate software architects, CodeLaunch was born out of a desire to bridge the gap between stunning design and flawless backend performance. We don't just write code; we build the infrastructure of tomorrow.
+                  Founded by a group of passionate software architects, Prokodex was born out of a desire to bridge the gap between stunning design and flawless backend performance. We don't just write code; we build the infrastructure of tomorrow.
                 </p>
               </div>
 

@@ -423,7 +423,7 @@ export default function InternshipPage() {
             <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 text-secondary mb-6 text-sm font-semibold tracking-wide uppercase border border-secondary/20">
-                  The CodeLaunch Advantage
+                  The Prokodex Advantage
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Intern With Us?</span></h2>
                 <ul className="space-y-6">

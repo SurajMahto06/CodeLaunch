@@ -1,8 +1,8 @@
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | CodeLaunch",
-  description: "Privacy policy and data handling practices of CodeLaunch Technologies.",
+  title: "Privacy Policy | Prokodex",
+  description: "Privacy policy and data handling practices of Prokodex.",
 }
 
 export default function PrivacyPolicyPage() {
@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Contact Us</h2>
           <p>
             If you have questions or comments about this Privacy Policy, please contact us at: 
-            hello@codelaunch.tech
+            hello@prokodex.com
           </p>
         </div>
       </div>

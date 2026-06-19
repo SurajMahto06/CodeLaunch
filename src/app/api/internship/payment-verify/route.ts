@@ -130,7 +130,7 @@ export async function POST(request: Request) {
               <div class="field"><div class="label">Message</div><div class="message-box">${safeCoverLetter}</div></div>
             </div>
             <div class="footer">
-              This is an automated message from the CodeLaunch Internship Application form.
+              This is an automated message from the Prokodex Internship Application form.
             </div>
           </div>
         </body>
@@ -140,13 +140,13 @@ export async function POST(request: Request) {
     };
 
     // Standard message for all plans since everyone gets portal access
-    const planSpecificMessage = "Our team will reach out to you shortly with your CodeLaunch portal access credentials and the onboarding schedule.";
+    const planSpecificMessage = "Our team will reach out to you shortly with your Prokodex portal access credentials and the onboarding schedule.";
 
     // Email to Applicant
     const userMailOptions = {
-      from: `"CodeLaunch Team" <${process.env.EMAIL_USER}>`,
+      from: `"Prokodex Team" <${process.env.EMAIL_USER}>`,
       to: safeEmail,
-      subject: `CodeLaunch: Internship Enrollment Confirmed`,
+      subject: `Prokodex: Internship Enrollment Confirmed`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -170,7 +170,7 @@ export async function POST(request: Request) {
             </div>
             <div class="content">
               <div class="greeting">Hi ${safeFullName},</div>
-              <p>Welcome to <strong>CodeLaunch</strong>! Your enrollment in the <strong>${safeTrack}</strong> program (${safePlan.toUpperCase()} Plan) is officially confirmed.</p>
+              <p>Welcome to <strong>Prokodex</strong>! Your enrollment in the <strong>${safeTrack}</strong> program (${safePlan.toUpperCase()} Plan) is officially confirmed.</p>
               <p>We are thrilled to have you on board. ${planSpecificMessage}</p>
               
               <div class="invoice-box">
@@ -184,10 +184,10 @@ export async function POST(request: Request) {
               </div>
 
               <p>If you have any questions before the program starts, simply reply to this email.</p>
-              <p>Best regards,<br><strong>The CodeLaunch Team</strong></p>
+              <p>Best regards,<br><strong>The Prokodex Team</strong></p>
             </div>
             <div class="footer">
-              © ${new Date().getFullYear()} CodeLaunch. All rights reserved.<br>
+              © ${new Date().getFullYear()} Prokodex. All rights reserved.<br>
               This is an automated receipt for your purchase.
             </div>
           </div>
@@ -206,7 +206,7 @@ export async function POST(request: Request) {
     // Send Telegram Notification
     if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
       try {
-        const tgMessage = `✅ <b>PAID INTERNSHIP APPLICATION</b>\n━━━━━━━━━━━━━━━━━━\n💳 <b>Payment ID:</b> <code>${razorpayPaymentId}</code>\n👤 <b>Name:</b> <code>${safeFullName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n📞 <b>Phone:</b> <code>${safePhone}</code>\n💻 <b>Program:</b> <i>${safeTrack}</i>\n📦 <b>Plan:</b> <b>${safePlan.toUpperCase()}</b>\n\n📎 <b>Resume:</b> ${resumeMethod === 'link' && safeResumeLink !== 'N/A' ? `<a href="${safeResumeLink}">View Link</a>` : (resumeMethod === 'upload' && resumeFile && resumeFile.size > 0 ? 'File Uploaded (See Email)' : 'Not Provided')}\n\n💬 <b>Cover Letter:</b>\n<blockquote>${safeCoverLetter}</blockquote>\n\n🌐 <i>via CodeLaunch Website</i>`;
+        const tgMessage = `✅ <b>PAID INTERNSHIP APPLICATION</b>\n━━━━━━━━━━━━━━━━━━\n💳 <b>Payment ID:</b> <code>${razorpayPaymentId}</code>\n👤 <b>Name:</b> <code>${safeFullName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n📞 <b>Phone:</b> <code>${safePhone}</code>\n💻 <b>Program:</b> <i>${safeTrack}</i>\n📦 <b>Plan:</b> <b>${safePlan.toUpperCase()}</b>\n\n📎 <b>Resume:</b> ${resumeMethod === 'link' && safeResumeLink !== 'N/A' ? `<a href="${safeResumeLink}">View Link</a>` : (resumeMethod === 'upload' && resumeFile && resumeFile.size > 0 ? 'File Uploaded (See Email)' : 'Not Provided')}\n\n💬 <b>Cover Letter:</b>\n<blockquote>${safeCoverLetter}</blockquote>\n\n🌐 <i>via Prokodex Website</i>`;
         const tgUrl = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
 
         await fetch(tgUrl, {

@@ -73,7 +73,7 @@ export async function POST(request: Request) {
         <body>
           <div class="container">
             <div class="header">
-              <h1>CODELAUNCH</h1>
+              <h1>PROKODEX</h1>
             </div>
             <div class="content">
               <h2 style="margin-top: 0; color: #09090b; font-size: 22px; margin-bottom: 24px; text-align: center;">New Contact Submission</h2>
@@ -99,7 +99,7 @@ export async function POST(request: Request) {
               </div>
             </div>
             <div class="footer">
-              This is an automated message from the CodeLaunch website contact form.
+              This is an automated message from the Prokodex website contact form.
             </div>
           </div>
         </body>
@@ -113,7 +113,7 @@ export async function POST(request: Request) {
     // Send Telegram Notification
     if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
       try {
-        const tgMessage = `🔔 <b>NEW CONTACT INQUIRY</b>\n━━━━━━━━━━━━━━━━━━\n👤 <b>Name:</b> <code>${safeFirstName} ${safeLastName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n🏷️ <b>Inquiry Type:</b> <i>${safeInquiryType}</i>\n\n💬 <b>Message:</b>\n<blockquote>${escapeHTML(message)}</blockquote>\n\n🌐 <i>via CodeLaunch Website</i>`;
+        const tgMessage = `🔔 <b>NEW CONTACT INQUIRY</b>\n━━━━━━━━━━━━━━━━━━\n👤 <b>Name:</b> <code>${safeFirstName} ${safeLastName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n🏷️ <b>Inquiry Type:</b> <i>${safeInquiryType}</i>\n\n💬 <b>Message:</b>\n<blockquote>${escapeHTML(message)}</blockquote>\n\n🌐 <i>via Prokodex Website</i>`;
         const tgUrl = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
 
         await fetch(tgUrl, {

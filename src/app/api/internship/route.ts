@@ -111,7 +111,7 @@ export async function POST(request: Request) {
               <div class="field"><div class="label">Message</div><div class="message-box">${safeCoverLetter}</div></div>
             </div>
             <div class="footer">
-              This is an automated message from the CodeLaunch Internship Application form.
+              This is an automated message from the Prokodex Internship Application form.
             </div>
           </div>
         </body>
@@ -125,7 +125,7 @@ export async function POST(request: Request) {
     // Send Telegram Notification
     if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
       try {
-        const tgMessage = `🎓 <b>NEW INTERNSHIP APPLICATION</b>\n━━━━━━━━━━━━━━━━━━\n👤 <b>Name:</b> <code>${safeFullName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n📞 <b>Phone:</b> <code>${safePhone}</code>\n💻 <b>Program:</b> <i>${safeTrack}</i>\n📦 <b>Plan:</b> <b>${safePlan.toUpperCase()}</b>\n\n📎 <b>Resume:</b> ${resumeMethod === 'link' && safeResumeLink !== 'N/A' ? `<a href="${safeResumeLink}">View Link</a>` : (resumeMethod === 'upload' && resumeFile && resumeFile.size > 0 ? 'File Uploaded (See Email)' : 'Not Provided')}\n\n💬 <b>Message:</b>\n<blockquote>${safeCoverLetter}</blockquote>\n\n🌐 <i>via CodeLaunch Website</i>`;
+        const tgMessage = `🎓 <b>NEW INTERNSHIP APPLICATION</b>\n━━━━━━━━━━━━━━━━━━\n👤 <b>Name:</b> <code>${safeFullName}</code>\n📧 <b>Email:</b> <code>${safeEmail}</code>\n📞 <b>Phone:</b> <code>${safePhone}</code>\n💻 <b>Program:</b> <i>${safeTrack}</i>\n📦 <b>Plan:</b> <b>${safePlan.toUpperCase()}</b>\n\n📎 <b>Resume:</b> ${resumeMethod === 'link' && safeResumeLink !== 'N/A' ? `<a href="${safeResumeLink}">View Link</a>` : (resumeMethod === 'upload' && resumeFile && resumeFile.size > 0 ? 'File Uploaded (See Email)' : 'Not Provided')}\n\n💬 <b>Message:</b>\n<blockquote>${safeCoverLetter}</blockquote>\n\n🌐 <i>via Prokodex Website</i>`;
         const tgUrl = `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`;
 
         await fetch(tgUrl, {

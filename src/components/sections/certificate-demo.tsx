@@ -77,7 +77,7 @@ export function CertificateDemo() {
                 <div className="relative aspect-[1.414/1] w-full rounded-2xl overflow-hidden shadow-inner ring-1 ring-white/10">
                   <Image
                     src="/images/certificate_flat_mockup.png"
-                    alt="CodeLaunch Internship Certificate Mockup"
+                    alt="Prokodex Internship Certificate Mockup"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"

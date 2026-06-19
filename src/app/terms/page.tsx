@@ -2,8 +2,8 @@ import { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Terms of Service | CodeLaunch",
-  description: "Terms and conditions for using CodeLaunch Technologies services.",
+  title: "Terms of Service | Prokodex",
+  description: "Terms and conditions for using Prokodex services.",
 }
 
 export default function TermsOfServicePage() {
@@ -22,7 +22,7 @@ export default function TermsOfServicePage() {
 
           <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Description of Service</h2>
           <p>
-            CodeLaunch Technologies provides software development, consulting, and educational services.
+            Prokodex provides software development, consulting, and educational services.
             We reserve the right to modify or discontinue, temporarily or permanently, the services with
             or without notice.
           </p>
@@ -31,12 +31,12 @@ export default function TermsOfServicePage() {
           <p>
             All content included on this site, such as text, graphics, logos, button icons, images,
             audio clips, digital downloads, data compilations, and software, is the property of
-            CodeLaunch Technologies or its content suppliers and protected by international copyright laws.
+            Prokodex or its content suppliers and protected by international copyright laws.
           </p>
 
           <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Limitation of Liability</h2>
           <p>
-            In no event shall CodeLaunch Technologies, nor its directors, employees, partners, agents,
+            In no event shall Prokodex, nor its directors, employees, partners, agents,
             suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or
             punitive damages, including without limitation, loss of profits, data, use, goodwill, or
             other intangible losses, resulting from your access to or use of or inability to access or

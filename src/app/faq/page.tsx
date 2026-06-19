@@ -6,8 +6,8 @@ import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 
 const faqs = [
   {
-    question: "What services does CodeLaunch provide?",
-    answer: "CodeLaunch specializes in building modern digital products. Our core services include Web Development, Mobile App Development, Custom ERP Systems, and UI/UX Design."
+    question: "What services does Prokodex provide?",
+    answer: "Prokodex specializes in building modern digital products. Our core services include Web Development, Mobile App Development, Custom ERP Systems, and UI/UX Design."
   },
   {
     question: "Do you work with startups or established enterprises?",

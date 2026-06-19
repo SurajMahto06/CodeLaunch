@@ -74,7 +74,7 @@ export function Navbar() {
               <div className="bg-secondary/10 p-2 rounded-xl group-hover:bg-secondary/20 transition-colors">
                 <Code2 className="h-6 w-6 text-secondary" />
               </div>
-              <span className="font-bold text-xl tracking-tight">CodeLaunch</span>
+              <span className="font-bold text-xl tracking-tight">Prokodex</span>
             </Link>
           </div>
 

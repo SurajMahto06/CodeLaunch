@@ -125,8 +125,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4 className="font-bold mb-1">Email Us</h4>
-                    <p className="text-sm text-muted-foreground">hello@codelaunch.tech</p>
-                    <p className="text-sm text-muted-foreground">careers@codelaunch.tech</p>
+                    <p className="text-sm text-muted-foreground">hello@prokodex.com</p>
+                    <p className="text-sm text-muted-foreground">careers@prokodex.com</p>
                   </div>
                 </div>
 

@@ -77,12 +77,12 @@ export default function Home() {
   }
 
   const testimonials = [
-    { quote: "CodeLaunch transformed our legacy systems into a modern, lightning-fast ERP. The attention to detail is unmatched.", author: "Sarah Jenkins", role: "CTO, GlobalLogistics" },
+    { quote: "Prokodex transformed our legacy systems into a modern, lightning-fast ERP. The attention to detail is unmatched.", author: "Sarah Jenkins", role: "CTO, GlobalLogistics" },
     { quote: "The team's expertise in Next.js and React is phenomenal. They delivered our SaaS product 3 weeks ahead of schedule.", author: "David Chen", role: "Founder, SaaSFlow" },
-    { quote: "Our interns from CodeLaunch were incredibly well-trained. They contributed to our live codebase from week one.", author: "Michael Ross", role: "VP Engineering, TechNova" },
+    { quote: "Our interns from Prokodex were incredibly well-trained. They contributed to our live codebase from week one.", author: "Michael Ross", role: "VP Engineering, TechNova" },
     { quote: "The mobile app they built for us has a 4.9 rating on the App Store. The UX is flawless and the performance is buttery smooth.", author: "Emily Watson", role: "Product Manager, FitLife" },
     { quote: "We hired their enterprise consulting team for our microservices migration. It was the best technical decision we made this year.", author: "James Carter", role: "Director of Engineering, FinTrust" },
-    { quote: "Their internship program is a game changer. We regularly hire graduates from CodeLaunch and they are always production-ready.", author: "Anita Patel", role: "HR Head, TechInnovate" }
+    { quote: "Their internship program is a game changer. We regularly hire graduates from Prokodex and they are always production-ready.", author: "Anita Patel", role: "HR Head, TechInnovate" }
   ]
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -272,7 +272,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="space-y-8">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">CodeLaunch?</span></h2>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Prokodex?</span></h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 We don't just write code; we build scalable digital products that solve real business problems. Our engineering culture is built on quality, velocity, and extreme performance.
               </p>

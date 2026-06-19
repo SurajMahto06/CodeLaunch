@@ -173,7 +173,7 @@ function VerifyPageContent() {
             Verify <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary/40 via-secondary/80 to-secondary">Certificate</span>
           </motion.h1>
           <motion.p variants={fadeIn} className="text-muted-foreground text-lg max-w-xl mx-auto mb-6">
-            Enter the certificate ID to verify the authenticity of an internship or training program completed at CodeLaunch.
+            Enter the certificate ID to verify the authenticity of an internship or training program completed at Prokodex.
           </motion.p>
           <motion.div variants={fadeIn} className="flex flex-wrap justify-center gap-3">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-background border border-border/60 text-sm text-muted-foreground shadow-sm">
@@ -253,7 +253,7 @@ function VerifyPageContent() {
                   </div>
                   <div>
                     <h2 className="text-lg sm:text-2xl font-bold text-green-500 tracking-tight">Certificate Verified</h2>
-                    <p className="text-muted-foreground text-xs sm:text-base mt-0.5 sm:mt-1">This is a valid CodeLaunch credential.</p>
+                    <p className="text-muted-foreground text-xs sm:text-base mt-0.5 sm:mt-1">This is a valid Prokodex credential.</p>
                   </div>
                 </div>
 

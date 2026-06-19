@@ -26,7 +26,7 @@ export function Footer() {
               <div className="bg-secondary/10 p-2 rounded-xl group-hover:bg-secondary/20 transition-colors">
                 <Code2 className="h-6 w-6 text-secondary" />
               </div>
-              <span className="font-bold text-xl tracking-tight">CodeLaunch</span>
+              <span className="font-bold text-xl tracking-tight">Prokodex</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-sm">
               Building Modern Digital Products That Scale. We help startups and businesses build websites, ERP systems, mobile apps, and custom software solutions.
@@ -73,7 +73,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                hello@codelaunch.tech
+                hello@prokodex.com
               </li>
               <li className="text-sm text-muted-foreground">
                 123 Innovation Drive<br />
@@ -85,7 +85,7 @@ export function Footer() {
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} CodeLaunch Technologies. All rights reserved.
+            © {new Date().getFullYear()} Prokodex. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" onClick={scrollToTop} className="text-sm text-muted-foreground hover:text-secondary transition-colors">Privacy Policy</Link>

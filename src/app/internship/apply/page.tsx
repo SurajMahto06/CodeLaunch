@@ -274,7 +274,7 @@ function ApplicationForm() {
           key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_T1rNmBt4fXxCR8", // Default to test key for safety
           amount: orderData.order.amount,
           currency: "INR",
-          name: "CodeLaunch Internship",
+          name: "Prokodex Internship",
           description: `${pricingTiers.find(p => p.id === data.plan)?.name}`,
           order_id: orderData.order.id,
           handler: async function (response: any) {
