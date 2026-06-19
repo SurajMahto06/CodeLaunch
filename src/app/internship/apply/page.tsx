@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import ApplyClient from "./apply-client"
+import ApplyClient from "./client"
 
 export const metadata: Metadata = {
   title: "Apply for Internship",

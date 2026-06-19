@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import InternshipClient from "./internship-client"
+import InternshipClient from "./client"
 
 export const metadata: Metadata = {
   title: "Internship Programs",
@@ -144,9 +144,10 @@ export default function InternshipPage() {
 
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify(jsonLd)}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <InternshipClient />
     </>
   )

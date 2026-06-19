@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import PortfolioClient from "./portfolio-client"
+import PortfolioClient from "./client"
 
 export const metadata: Metadata = {
   title: "Our Work",
@@ -22,9 +22,10 @@ export default function PortfolioPage() {
 
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify(jsonLd)}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PortfolioClient />
     </>
   )

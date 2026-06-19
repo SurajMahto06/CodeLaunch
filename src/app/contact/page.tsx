@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import ContactClient from "./contact-client"
+import ContactClient from "./client"
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -38,9 +38,10 @@ export default function ContactPage() {
 
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify(jsonLd)}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <ContactClient />
     </>
   )

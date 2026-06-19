@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import AboutClient from "./about-client"
+import AboutClient from "./client"
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -31,9 +31,10 @@ export default function AboutPage() {
 
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify(jsonLd)}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <AboutClient />
     </>
   )

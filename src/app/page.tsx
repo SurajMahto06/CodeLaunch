@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import HomeClient from "./home-client"
+import HomeClient from "./client"
 
 export const metadata: Metadata = {
   title: "Prokodex — AI-Powered Software Development & Internships",
@@ -28,9 +28,10 @@ export default function HomePage() {
 
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify(jsonLd)}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <HomeClient />
     </>
   )

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import CareersClient from "./careers-client"
+import CareersClient from "./client"
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -113,9 +113,10 @@ export default function CareersPage() {
 
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify(jsonLd)}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <CareersClient />
     </>
   )

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import FaqClient from "./faq-client"
+import FaqClient from "./client"
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
@@ -66,9 +66,10 @@ export default function FaqPage() {
 
   return (
     <>
-      <script type="application/ld+json">
-        {JSON.stringify(jsonLd)}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <FaqClient />
     </>
   )

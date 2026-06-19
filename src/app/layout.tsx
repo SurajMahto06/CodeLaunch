@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Space_Grotesk } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] })
@@ -118,9 +119,26 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="overflow-x-hidden" data-scroll-behavior="smooth">
       <head>
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+            `,
+          }}
+        />
       </head>
       <body className={`${spaceGrotesk.className} min-h-screen bg-background antialiased flex flex-col overflow-x-hidden`}>
         <ThemeProvider
