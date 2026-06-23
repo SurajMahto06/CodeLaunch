@@ -23,15 +23,17 @@ export async function POST(request: Request) {
     // Apply Coupon Logic
     if (couponCode) {
       const code = couponCode.toUpperCase().trim();
+      
+      const coupons: Record<string, { type: string; value: number }> = require('@/data/coupons.json');
+      const coupon = coupons[code];
 
-      if (code === 'FLAT20') {
-        // 20% Off
-        discountAmount = originalPrice * 0.20;
-        finalPrice = originalPrice - discountAmount;
-      } else if (code === 'CODE100') {
-        // Flat Rs 100 Off
-        discountAmount = 100;
-        finalPrice = Math.max(originalPrice - discountAmount, 0); // Ensure price doesn't go negative
+      if (coupon) {
+        if (coupon.type === 'flat') {
+          discountAmount = coupon.value;
+          finalPrice = Math.max(originalPrice - discountAmount, 0); // Ensure price doesn't go negative
+        } else {
+          return NextResponse.json({ error: 'Only flat coupons are supported' }, { status: 500 });
+        }
       } else {
         return NextResponse.json({ error: 'Invalid coupon code' }, { status: 400 });
       }

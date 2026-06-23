@@ -284,7 +284,7 @@ function JobCard({ job, index }: { job: typeof jobs[0]; index: number }) {
                 <div className="text-xs text-muted-foreground text-center sm:text-left">
                   Refer to this job ID when contacting: <strong>{job.id}</strong>
                 </div>
-                <Link href={`/contact?subject=Application for ${encodeURIComponent(job.title)}`} className="w-full sm:w-auto">
+                <Link href="/contact" className="w-full sm:w-auto">
                   <Button className="w-full sm:w-auto cursor-pointer bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold px-8 h-12 rounded-xl shadow-lg shadow-secondary/20 transition-all hover:shadow-secondary/40">
                     Apply For This Position <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
@@ -435,7 +435,7 @@ export default function CareersPage() {
         highlight="Let's Talk anyway."
         description="We are always looking for stellar engineering, design, and project management talent. Send us your portfolio and let's see what we can build together."
         primaryBtnText="Get In Touch"
-        primaryBtnLink="/contact?subject=General Career Inquiry"
+        primaryBtnLink="/contact"
         primaryBtnIcon={<ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />}
         secondaryBtnText="Learn About Internships"
         secondaryBtnLink="/internship"

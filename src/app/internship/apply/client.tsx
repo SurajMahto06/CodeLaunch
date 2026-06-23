@@ -52,7 +52,8 @@ const tracks = [
   "React Native App Dev",
   "Flutter App Development",
   "UI/UX Design",
-  "Gen AI & AI Web Dev"
+  "Gen AI & AI Web Dev",
+  "Digital Marketing"
 ]
 
 const pricingTiers = [
@@ -79,6 +80,7 @@ const pricingTiers = [
       { title: "Certificate", desc: "Verified internship certificate." }
     ]
   },
+  /*
   {
     id: "premium",
     name: "Premium Plan",
@@ -107,6 +109,7 @@ const pricingTiers = [
       { title: "Certificate", desc: "Verified internship certificate." }
     ]
   }
+  */
 ]
 
 function ApplicationForm() {

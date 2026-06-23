@@ -19,6 +19,7 @@ import {
   Server,
   Cloud,
   LayoutTemplate,
+  TrendingUp,
   X
 } from "lucide-react"
 import Link from "next/link"
@@ -154,6 +155,20 @@ const programs = [
       { period: "Month 2", topic: "API Integration: OpenAI, Anthropic, & Function Calling" },
       { period: "Month 3", topic: "Building Context-Aware Agents with LangChain & LlamaIndex" },
       { period: "Month 4", topic: "Vector Databases (Pinecone), RAG Architecture & Deployment" }
+    ]
+  },
+  {
+    title: "Digital Marketing",
+    icon: TrendingUp,
+    duration: "3 Months",
+    description: "Master modern digital marketing, SEO, social media management, and paid advertising campaigns.",
+    syllabus: [
+      { period: "Week 1-2", topic: "Digital Marketing Fundamentals & Market Research" },
+      { period: "Week 3-4", topic: "On-page & Off-page SEO Mastery" },
+      { period: "Week 5-6", topic: "Social Media Strategy & Content Creation" },
+      { period: "Week 7-8", topic: "Google Ads, Facebook Ads & PPC Campaigns" },
+      { period: "Week 9-10", topic: "Email Marketing & Lead Generation Tactics" },
+      { period: "Week 11-12", topic: "Analytics, Reporting & Final Campaign Project" }
     ]
   }
 ]
@@ -328,6 +343,7 @@ export default function InternshipPage() {
       popular: false,
       id: "standard"
     },
+    /*
     {
       name: "Premium",
       price: "₹1,199",
@@ -360,6 +376,7 @@ export default function InternshipPage() {
       popular: false,
       id: "elite"
     }
+    */
   ]
 
   return (

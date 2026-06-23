@@ -19,7 +19,9 @@ import {
   Globe,
   CircleDollarSign,
   Unlock,
-  GraduationCap
+  GraduationCap,
+  TrendingUp,
+  Video
 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -37,6 +39,7 @@ const stagger = {
 
 export default function ServicesPage() {
   const services = [
+
     {
       icon: Bot,
       title: "AI Chatbots",
@@ -72,6 +75,18 @@ export default function ServicesPage() {
       title: "Custom Software",
       description: "Automate workflows, integrate APIs, build micro SaaS. Your idea, our code.",
       features: ["Workflow Automation", "API Integration", "Micro SaaS", "Custom Logic"]
+    },
+    {
+      icon: TrendingUp,
+      title: "Digital Marketing",
+      description: "Comprehensive marketing including On-page & Off-page SEO, social media management, Google Ads, and lead generation.",
+      features: ["On-page SEO", "Off-page SEO", "Social Media", "PPC Campaigns"]
+    },
+    {
+      icon: Video,
+      title: "Video & Graphic Design",
+      description: "Reel editing, YouTube videos, invitation cards, posters, logo design, and complete brand identity creation.",
+      features: ["Video Editing", "Poster Design", "UI/UX Design", "Graphics"]
     },
     {
       icon: CircleDollarSign,
@@ -192,8 +207,8 @@ export default function ServicesPage() {
         primaryBtnText="Start a Project"
         primaryBtnLink="/contact"
         primaryBtnIcon={<ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />}
-        secondaryBtnText="View Our Work"
-        secondaryBtnLink="/portfolio"
+        secondaryBtnText="View Demos"
+        secondaryBtnLink="/demos"
       />
 
     </div>

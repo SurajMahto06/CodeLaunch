@@ -32,7 +32,9 @@ import {
   Building2,
   Globe,
   CircleDollarSign,
-  Unlock
+  Unlock,
+  TrendingUp,
+  Video
 } from "lucide-react"
 
 import {
@@ -228,16 +230,18 @@ export default function HomeClient() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
+
               { icon: Bot, title: "AI Chatbots", desc: "24/7 lead qualification & customer support. Works on WhatsApp, web, and social media." },
               { icon: LayoutDashboard, title: "Admin Dashboards", desc: "Real-time analytics, KPIs, and reporting. See your business at a glance." },
               { icon: Building2, title: "Industry CRMs", desc: "Tailored for finance, healthcare, real estate & more. Manage leads, loans, clients." },
               { icon: Smartphone, title: "App Development", desc: "iOS & Android apps — cross-platform, fast, built for your business. From $499." },
               { icon: Globe, title: "Web Design & Deployment", desc: "Responsive websites & e-commerce. SEO-optimized, mobile-first. From $50." },
               { icon: Code2, title: "Custom Software", desc: "Automate workflows, integrate APIs, build micro SaaS. Your idea, our code." },
+              { icon: TrendingUp, title: "Digital Marketing", desc: "Comprehensive marketing including On-page & Off-page SEO, social media management, Google Ads, and lead generation." },
+              { icon: Video, title: "Video & Graphic Design", desc: "Reel editing, YouTube videos, invitation cards, posters, logo design, and complete brand identity creation." },
               { icon: CircleDollarSign, title: "Transparent Pricing", desc: "No hidden fees. Starting at $50. You own your API keys." },
               { icon: Unlock, title: "Full Source Code", desc: "You own everything. No vendor lock-in. We hand over code, docs, and deploy guides." },
               { icon: GraduationCap, title: "Internship Programs", desc: "Industry-aligned training programs for aspiring developers." },
-
             ].map((service, i) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -518,7 +522,8 @@ export default function HomeClient() {
               { track: "Full Stack Mastery", icon: Layers },
               { track: "UI/UX Architecture", icon: Palette },
               { track: "Mobile App Dev", icon: Smartphone },
-              { track: "AI & Web Dev", icon: Sparkles }
+              { track: "AI & Web Dev", icon: Sparkles },
+              { track: "Digital Marketing", icon: TrendingUp }
             ].map((item, i) => (
               <div key={i} className="group relative p-6 bg-card/40 backdrop-blur-sm border border-border/50 rounded-2xl text-center hover:border-secondary/50 hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.3)] hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden z-10">
                 <div className="absolute inset-0 bg-gradient-to-b from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

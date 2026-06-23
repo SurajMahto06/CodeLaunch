@@ -1,0 +1,10 @@
+{
+  "CODE100": {
+    "type": "flat",
+    "value": 100
+  },
+  "NEWYEAR50": {
+    "type": "flat",
+    "value": 50
+  }
+}

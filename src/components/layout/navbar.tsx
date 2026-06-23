@@ -37,7 +37,7 @@ export function Navbar() {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Our Work", href: "/portfolio" },
+    { name: "Demos", href: "/demos" },
     { name: "Internship", href: "/internship" },
   ]
 
@@ -76,7 +76,7 @@ export function Navbar() {
             </Link>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -98,7 +98,7 @@ export function Navbar() {
             </div>
           </nav>
 
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -112,7 +112,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background flex-1 overflow-y-auto border-t border-border">
+        <div className="lg:hidden bg-background flex-1 overflow-y-auto border-t border-border">
           <div className="px-4 py-6 flex flex-col h-full">
             {navLinks.map((link) => (
               <Link

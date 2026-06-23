@@ -16,8 +16,14 @@ const escapeHTML = (str: string) => {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { firstName, lastName, email, inquiryType, message, website } = body;
+    const formData = await request.formData();
+    const firstName = formData.get('firstName') as string;
+    const lastName = formData.get('lastName') as string;
+    const email = formData.get('email') as string;
+    const inquiryType = formData.get('inquiryType') as string;
+    const message = formData.get('message') as string;
+    const website = formData.get('website') as string;
+    const resume = formData.get('resume') as File | null;
 
     // 0. Honeypot Check
     if (website) {
@@ -47,12 +53,25 @@ export async function POST(request: Request) {
       },
     });
 
+    const attachments = [];
+    let resumeAttachedText = 'No resume attached';
+    if (resume) {
+      const arrayBuffer = await resume.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      attachments.push({
+        filename: resume.name,
+        content: buffer,
+      });
+      resumeAttachedText = `Resume attached: ${resume.name}`;
+    }
+
     // Email content using sanitized inputs
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER, // Send to self
       replyTo: safeEmail,
       subject: `New Contact Inquiry from ${firstName} ${lastName} - ${inquiryType || 'Not specified'}`,
+      attachments,
       html: `
         <!DOCTYPE html>
         <html>
@@ -97,6 +116,13 @@ export async function POST(request: Request) {
                 <div class="label">Message</div>
                 <div class="message-box">${safeMessage}</div>
               </div>
+              
+              ${resume ? `
+              <div class="field">
+                <div class="label">Resume</div>
+                <div class="value">${resumeAttachedText}</div>
+              </div>
+              ` : ''}
             </div>
             <div class="footer">
               This is an automated message from the Prokodex website contact form.

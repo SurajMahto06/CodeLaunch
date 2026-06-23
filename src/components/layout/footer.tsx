@@ -46,7 +46,7 @@ export function Footer() {
             <h4 className="font-semibold mb-6">Company</h4>
             <ul className="space-y-4">
               <li><Link href="/about" className="text-sm text-muted-foreground hover:text-secondary transition-colors">About Us</Link></li>
-              <li><Link href="/portfolio" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Our Work</Link></li>
+              <li><Link href="/demos" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Demos</Link></li>
               <li><Link href="/careers" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Careers</Link></li>
               <li><Link href="/internship" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Internships</Link></li>
               <li><Link href="/verify" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Verify Certificate</Link></li>
