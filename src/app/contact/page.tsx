@@ -19,13 +19,7 @@ export default function ContactPage() {
       "url": "https://prokodex.com",
       "email": "hello@prokodex.com",
       "telephone": "+91-72505-91448",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Chaibasa",
-        "addressRegion": "Jharkhand",
-        "postalCode": "833201",
-        "addressCountry": "IN"
-      },
+
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+91-72505-91448",

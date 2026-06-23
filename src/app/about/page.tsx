@@ -19,13 +19,7 @@ export default function AboutPage() {
       "url": "https://prokodex.com",
       "foundingDate": "2021",
       "description": "Building Modern Digital Products That Scale. We help startups and businesses build websites, ERP systems, mobile apps, and custom software solutions.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Chaibasa",
-        "addressRegion": "Jharkhand",
-        "postalCode": "833201",
-        "addressCountry": "IN"
-      }
+
     }
   }
 

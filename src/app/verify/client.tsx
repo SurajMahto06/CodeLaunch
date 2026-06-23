@@ -9,9 +9,11 @@ import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useSearchParams } from "next/navigation"
+import axios from "axios"
 
 const verifySchema = z.object({
   certificateId: z.string().min(1, "Certificate ID is required"),
+  botCheck: z.string().optional(),
 })
 
 type VerifyFormValues = z.infer<typeof verifySchema>
@@ -61,7 +63,7 @@ function VerifyPageContent() {
 
   const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm<VerifyFormValues>({
     resolver: zodResolver(verifySchema),
-    defaultValues: { certificateId: "" }
+    defaultValues: { certificateId: "", botCheck: "" }
   })
 
   const certificateId = watch("certificateId")
@@ -85,17 +87,13 @@ function VerifyPageContent() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams])
 
-  const handleVerify = async (id: string) => {
+  const handleVerify = async (id: string, botCheck?: string) => {
     setStatus("loading")
     setCertData(null)
     try {
-      const response = await fetch('/api/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id })
-      })
-      const result = await response.json()
-      if (response.ok && result.success) {
+      const response = await axios.post('/api/verify', { id, botCheck })
+      const result = response.data
+      if (response.status === 200 && result.success) {
         setCertData(result.certificate)
         setStatus("success")
       } else {
@@ -111,7 +109,7 @@ function VerifyPageContent() {
 
   const onSubmit = async (data: VerifyFormValues) => {
     setInvalidLink(false)
-    handleVerify(data.certificateId)
+    handleVerify(data.certificateId, data.botCheck)
   }
 
   return (
@@ -202,6 +200,17 @@ function VerifyPageContent() {
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
 
             <form onSubmit={handleSubmit(onSubmit)} className="relative z-10 flex flex-col sm:flex-row gap-4">
+              {/* Honeypot Field */}
+              <div style={{ display: 'none' }} aria-hidden="true">
+                <label htmlFor="botCheck">Leave this field empty</label>
+                <input
+                  type="text"
+                  id="botCheck"
+                  {...register("botCheck")}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
               <div className="relative flex-1">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <input

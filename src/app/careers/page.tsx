@@ -25,9 +25,6 @@ export default function CareersPage() {
         "@type": "Place",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Chaibasa",
-          "addressRegion": "Jharkhand",
-          "postalCode": "833201",
           "addressCountry": "IN"
         }
       },
@@ -78,9 +75,6 @@ export default function CareersPage() {
         "@type": "Place",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Chaibasa",
-          "addressRegion": "Jharkhand",
-          "postalCode": "833201",
           "addressCountry": "IN"
         }
       },

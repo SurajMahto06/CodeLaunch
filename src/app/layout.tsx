@@ -95,13 +95,7 @@ export default function RootLayout({
     "url": "https://prokodex.com",
     "logo": "https://prokodex.com/logo-dark.png",
     "description": "Building Modern Digital Products That Scale. We help startups and businesses build websites, ERP systems, mobile apps, and custom software solutions.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Chaibasa",
-      "addressRegion": "Jharkhand",
-      "postalCode": "833201",
-      "addressCountry": "IN"
-    },
+
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+91-72505-91448",
