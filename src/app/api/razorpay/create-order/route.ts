@@ -23,19 +23,35 @@ export async function POST(request: Request) {
     // Apply Coupon Logic
     if (couponCode) {
       const code = couponCode.toUpperCase().trim();
-      
-      const coupons: Record<string, { type: string; value: number }> = require('@/data/coupons.json');
-      const coupon = coupons[code];
 
-      if (coupon) {
-        if (coupon.type === 'flat') {
-          discountAmount = coupon.value;
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+        const backendRes = await fetch(`${apiUrl}/coupons/verify`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ couponCode: code })
+        });
+
+        const data = await backendRes.json();
+
+        if (data.success) {
+          const type = data.type;
+          const value = data.value !== undefined ? data.value : data.discountAmount;
+
+          if (type === 'percentage') {
+            discountAmount = Math.round(originalPrice * (value / 100));
+          } else if (type === 'flat') {
+            discountAmount = Math.round(value);
+          } else if (data.discountAmount !== undefined) {
+            discountAmount = data.discountAmount;
+          }
           finalPrice = Math.max(originalPrice - discountAmount, 0); // Ensure price doesn't go negative
         } else {
-          return NextResponse.json({ error: 'Only flat coupons are supported' }, { status: 500 });
+          return NextResponse.json({ error: data.message || 'Invalid coupon code' }, { status: 400 });
         }
-      } else {
-        return NextResponse.json({ error: 'Invalid coupon code' }, { status: 400 });
+      } catch (error) {
+        console.error("Coupon verification error during order creation:", error);
+        return NextResponse.json({ error: 'Failed to verify coupon' }, { status: 500 });
       }
     }
 

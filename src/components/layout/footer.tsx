@@ -39,6 +39,8 @@ export function Footer() {
               <li><Link href="/services" className="text-sm text-muted-foreground hover:text-secondary transition-colors">App Development</Link></li>
               <li><Link href="/services" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Web Design & Deployment</Link></li>
               <li><Link href="/services" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Custom Software</Link></li>
+              <li><Link href="/services" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Digital Marketing</Link></li>
+              <li><Link href="/services" className="text-sm text-muted-foreground hover:text-secondary transition-colors">Video & Graphic Design</Link></li>
             </ul>
           </div>
 

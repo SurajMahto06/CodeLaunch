@@ -171,31 +171,30 @@ function ApplicationForm() {
 
   // Apply Coupon
   const handleApplyCoupon = async () => {
-    if (!couponCode.trim() || watchedPlan === 'general') return
-    setIsApplyingCoupon(true)
-
+    if (!couponCode.trim() || watchedPlan === 'general') return;
+    setIsApplyingCoupon(true);
     try {
-      const response = await fetch('/api/razorpay/create-order', {
+      const response = await fetch('/api/verify-coupon', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan: watchedPlan, couponCode: couponCode.trim() })
-      })
-      const data = await response.json()
-
-      if (response.ok && data.discountAmount > 0) {
-        setCouponStatus("valid")
-        setDiscountAmount(data.discountAmount)
+        body: JSON.stringify({ couponCode: couponCode.trim(), plan: watchedPlan })
+      });
+      
+      const data = await response.json();
+      if (data.success) {
+        setCouponStatus("valid");
+        setDiscountAmount(data.discountAmount);
       } else {
-        setCouponStatus("invalid")
-        setDiscountAmount(0)
+        setCouponStatus("invalid");
+        setDiscountAmount(0);
       }
     } catch {
-      setCouponStatus("invalid")
-      setDiscountAmount(0)
+      setCouponStatus("invalid");
+      setDiscountAmount(0);
     } finally {
-      setIsApplyingCoupon(false)
+      setIsApplyingCoupon(false);
     }
-  }
+  };
 
   // Update track if URL param changes after mount
   useEffect(() => {
